@@ -1,0 +1,13 @@
+{
+    "sections": {
+      "main": {
+        "type": "custom-plano-sun-replacement",
+        "settings": {
+        }
+      }
+    },
+    "order": [
+      "main"
+    ]
+  }
+  
