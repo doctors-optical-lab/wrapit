@@ -5,5 +5,8 @@ const PlanoSunComponent = {
             message: 'Hello Vue!',
             message2: 'hello hello hellos'
         }
+    },
+    mounted(){
+        console.log(sunglasses)
     }
 }
