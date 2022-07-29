@@ -1,8 +1,8 @@
 
 const { reactive } = Vue
 
-const sunglasses
-const pageData
+const library = sunglasses;
+const page = pageData;
 
 
 const PlanoSunComponent = {
@@ -10,8 +10,7 @@ const PlanoSunComponent = {
     setup(){
         const state = reactive({ count: 0 })
 
-        const library = sunglasses;
-        console.log(library, pageData);
+        console.log(library, page);
         return {
           state
         }
