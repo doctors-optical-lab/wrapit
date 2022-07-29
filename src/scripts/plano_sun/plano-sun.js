@@ -3,7 +3,6 @@ const { reactive, ref } = Vue
 const PlanoSunComponent = {
     setup(){
         const state = reactive({ count: 0 })
-        // expose the state to the template
         return {
           state
         }

@@ -4,11 +4,11 @@
 </div>
 
 {% render 'custom-page-data' %}
+<script src="{{ 'plano-sun.js' | asset_url }}"></script>
 
 <script>
     const { createApp } = Vue
     createApp(PlanoSunComponent).mount('#plano-sun-replacement');
 </script>
 
-<script src="{{ 'plano-sun.js' | asset_url }}"></script>
 
