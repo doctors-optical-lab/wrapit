@@ -1,2 +1,1 @@
-const{reactive:reactive}=Vue,library=sunglasses,page=pageData,PlanoSunComponent={name:"Plano Sunglasses",setup(){const a=reactive({count:0});return console.log(library,page),{state:a}}},sunglasses=[{id:"justin-rb4165",name:"Justin RB4165",brand:{id:"ray-ban",name:"Ray-Ban"},"frame-material":"plastic","frame-shape":"full-rim","frame-wrap":"high-wrap"},{id:"aviator-rb3025",name:"Aviator RB3025",brand:{id:"aviator",name:"Aviator"},"frame-material":"metal","frame-shape":"full-rim","frame-wrap":"high-wrap"}];
-//# sourceMappingURL=plano-sun.js.map
+const{reactive:reactive}=Vue,library=sunglasses,page=pageData,PlanoSunComponent={name:"Plano Sunglasses",setup(){const e=reactive({count:0});return console.log(library,page),{state:e}}};

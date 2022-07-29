@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const sourcemaps = require('gulp-sourcemaps');
+const flatten = require('gulp-flatten');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const minifycss = require('gulp-clean-css');
@@ -15,25 +16,18 @@ function compilescss() {
         .pipe(dest('assets'))
 };
 
-function jsTask(path, target){
-    return () => src(path)
-        .pipe(sourcemaps.init())
-        .pipe(concat(target))
+function jsTask(){
+    return src('src/scripts/**/*.js', { nodir: true })
         .pipe(terser())
-        .pipe(sourcemaps.write('.'))
+        .pipe(flatten())
         .pipe(dest('assets'));
 }
 
-const planoSunJs = jsTask('src/scripts/plano_sun/**/*.js', 'plano-sun.js');
-
 function watchTask(){
-    watch(['src/styles/*.scss', 'src/scripts/plano_sun/**/*.js'], { interval: 1000 }, parallel(compilescss, planoSunJs))
+    watch(['src/styles/*.scss', 'src/scripts/*/*.js'], { interval: 1000 }, parallel(compilescss, jsTask))
 }
 
-
-exports.planoSunJs = planoSunJs;
-exports.compilescss = compilescss;
 exports.default = series(
-    parallel(planoSunJs, compilescss),
+    parallel(compilescss, jsTask),
     watchTask
 );

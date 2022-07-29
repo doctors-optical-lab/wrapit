@@ -20,5 +20,16 @@ const sunglasses = [
         "frame-material": "metal",
         "frame-shape": "full-rim",
         "frame-wrap": "high-wrap"
+    },
+    {
+        "id": "aviator-rb3045",
+        "name": "Aviator RB3045",
+        "brand": {
+            "id": "aviator2",
+            "name": "Aviator 2.0"
+        },
+        "frame-material": "metal",
+        "frame-shape": "full-rim",
+        "frame-wrap": "high-wrap"
     }
 ]
