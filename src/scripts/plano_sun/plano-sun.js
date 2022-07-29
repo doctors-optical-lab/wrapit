@@ -1,3 +1,5 @@
+const { reactive, ref } = Vue
+
 const PlanoSunComponent = {
     setup(){
         const state = reactive({ count: 0 })
