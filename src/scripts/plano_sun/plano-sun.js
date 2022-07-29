@@ -6,7 +6,7 @@ const PlanoSunComponent = {
     setup(){
         const state = reactive({ count: 0 })
 
-        const library = pageData;
+        const library = sunglasses;
         console.log(library)
         return {
           state

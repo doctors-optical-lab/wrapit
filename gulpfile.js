@@ -11,10 +11,10 @@ const {src, series, parallel, dest, watch} = gulp;
 
 function compilescss() {
     return src('src/styles/*.scss')
-      .pipe(sass())
-      .pipe(autoprefixer('last 2 versions'))
-      .pipe(minifycss())
-      .pipe(dest('assets'))
+        .pipe(sass())
+        .pipe(autoprefixer('last 2 versions'))
+        .pipe(minifycss())
+        .pipe(dest('assets'))
 };
 
 function jsTask(path, target){
@@ -32,9 +32,10 @@ function watchTask(){
     watch(['src/styles/*.scss', 'src/scripts/plano_sun/**/*.js'], { interval: 1000 }, parallel(compilescss, planoSunJs))
 }
 
+
 exports.planoSunJs = planoSunJs;
 exports.compilescss = compilescss;
 exports.default = series(
     parallel(planoSunJs, compilescss),
-    watchTask
+    watch
 );
