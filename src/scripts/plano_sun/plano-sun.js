@@ -1,5 +1,3 @@
-import { reactive } from 'vue'
-
 const PlanoSunComponent = {
     setup(){
         const state = reactive({ count: 0 })
