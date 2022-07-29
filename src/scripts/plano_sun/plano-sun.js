@@ -1,4 +1,5 @@
 
+const { reactive } = Vue
 const PlanoSunComponent = {
     name: "Plano Sunglasses",
     setup(){
