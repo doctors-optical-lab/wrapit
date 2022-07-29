@@ -1,3 +1,11 @@
+<script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+</script>
+  
 <div id="plano-sun-replacement">
     <h1>{{page.title}}</h1>
     <p>{{page.content}}</p>
@@ -9,7 +17,7 @@
 
 <script type="module">
     import { createApp } from 'vue'
-    
+
     createApp(PlanoSunComponent).mount('#plano-sun-replacement');
 </script>
 
