@@ -7,8 +7,9 @@
 {% render 'custom-page-data' %}
 <script src="{{ 'plano-sun.js' | asset_url }}"></script>
 
-<script>
-    const { createApp } = Vue
+<script type="module">
+    import { createApp } from 'vue'
+    
     createApp(PlanoSunComponent).mount('#plano-sun-replacement');
 </script>
 
