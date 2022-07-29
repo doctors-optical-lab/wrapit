@@ -3,10 +3,14 @@
     <p>{{page.content}}</p>
 </div>
 
-<script defer>
-    const { createApp, ref, reactive } = Vue
-    createApp(PlanoSunComponent).mount('#plano-sun-replacement');
-</script>
 
 {% render 'custom-page-data' %}
+<script>
+    const { createApp, ref, reactive } = Vue
+</script>
+
 <script src="{{ 'plano-sun.js' | asset_url }}"></script>
+
+<script>
+    createApp(PlanoSunComponent).mount('#plano-sun-replacement');
+</script>
