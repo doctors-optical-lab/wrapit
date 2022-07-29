@@ -37,5 +37,5 @@ exports.planoSunJs = planoSunJs;
 exports.compilescss = compilescss;
 exports.default = series(
     parallel(planoSunJs, compilescss),
-    watch
+    watchTask
 );
