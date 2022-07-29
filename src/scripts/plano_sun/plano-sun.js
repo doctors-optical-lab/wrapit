@@ -14,6 +14,6 @@ const PlanoSunComponent = {
         }
     },
     mounted(){
-        console.log(sunglasses, state)
+        console.log(sunglasses, state.count)
     }
 }
