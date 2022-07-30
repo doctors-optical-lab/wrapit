@@ -1,1 +1,1 @@
-const{reactive:reactive}=Vue,library=sunglasses,page=pageData,PlanoSunComponent={name:"Plano Sunglasses",setup(){const e=reactive({count:0});return console.log(library,page),{state:e}}};
+const{reactive:reactive}=Vue,PlanoSunComponent={name:"Plano Sunglasses",setup:()=>({data:reactive({brandLibrary:sunglasses.filter((a=>a.brand.id==pageData.metafields.brand))})})};

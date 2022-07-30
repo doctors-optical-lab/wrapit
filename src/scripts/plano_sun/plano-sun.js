@@ -1,18 +1,19 @@
 
 const { reactive } = Vue
 
-const library = sunglasses;
-const page = pageData;
-
-
 const PlanoSunComponent = {
     name: "Plano Sunglasses",
     setup(){
-        const state = reactive({ count: 0 })
+        const data = reactive({ 
+          //filter sunglasses by brand using pageData.metafields.brand
+          brandLibrary: sunglasses.filter(frame => frame.brand.id == pageData.metafields.brand)
+        })
 
-        console.log(library, page);
+        //populate brandLibrary
+
+
         return {
-          state
+          data
         }
     }
 }
