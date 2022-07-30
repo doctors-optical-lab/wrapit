@@ -1,0 +1,1 @@
+const{reactive:reactive}=Vue,SunglassesCollectionComponent={name:"Sunglasses Collection Component",setup:()=>({data:reactive({brandLibrary:sunglasses.filter((e=>e.brand.id==pageData.metafields.brand))})})};

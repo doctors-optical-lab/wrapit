@@ -1,0 +1,16 @@
+<div id="sunglasses-grid">
+    <div class="controls">
+    </div>
+    <div class="body">
+    </div>
+</div>
+
+{% render 'object-collection' %}
+<script src="{{ 'sunglasses-collection.js' | asset_url }}"></script>
+
+<script>
+    const { createApp } = Vue
+    createApp(SunglassesCollectionComponent).mount('#sunglasses-grid');
+</script>
+
+
