@@ -6,7 +6,7 @@ const SunglassesCollectionComponent = {
     setup(){
         const data = reactive({ 
           //filter sunglasses by brand using pageData.metafields.brand
-          brandLibrary: sunglasses.filter(frame => frame.brand.id == pageData.metafields.brand)
+          "collection-object": collectionObject
         })
 
         return {
