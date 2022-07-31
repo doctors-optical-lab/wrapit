@@ -43,7 +43,7 @@
             {% for filter in collection.filters %}
                 "{{ filter.label }}":[
                     {% for value in filter.values %}
-                        "{{value}}"{% if forloop.last == true%}{% else %}, {%endif%}
+                        "{{value.value}}"{% if forloop.last == true%}{% else %}, {%endif%}
                     {% endfor %}
                 ]{% if forloop.last == true%}{% else %}, {%endif%}
             {% endfor %}
