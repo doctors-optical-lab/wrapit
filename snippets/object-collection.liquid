@@ -41,7 +41,7 @@
         ],
         "filters":[
             {% for filter in collection.filters %}
-                filter{% if forloop.last == true%}{% else %}, {%endif%}
+                {{ filter }}{% if forloop.last == true%}{% else %}, {%endif%}
             {% endfor %}
         ]
 
