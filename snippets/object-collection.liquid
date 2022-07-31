@@ -38,6 +38,12 @@
               ]
             }{% if forloop.last == true%}{% else %}, {%endif%}
           {% endfor%}
+        ],
+        "filters":[
+            {% for filter in product.filters %}
+                filter{% if forloop.last == true%}{% else %}, {%endif%}
+            {% endfor %}
         ]
+
     }
 </script>
