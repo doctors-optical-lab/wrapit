@@ -40,7 +40,7 @@
           {% endfor%}
         ],
         "filters":[
-            {% for filter in product.filters %}
+            {% for filter in collection.filters %}
                 filter{% if forloop.last == true%}{% else %}, {%endif%}
             {% endfor %}
         ]
