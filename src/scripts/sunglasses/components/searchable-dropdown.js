@@ -42,7 +42,7 @@ const SearchableDropDown = {
                 @mousedown="selectOption(option)"
                 v-for="(option, index) in filteredOptions"
                 :key="index">
-                {{ option.name || option.id || '-' }}
+                {{ option || '-' }}
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@ const SearchableDropDown = {
             const filtered = [];
             const regOption = new RegExp(data.searchFilter, 'ig');
             for (const option of props.options) {
-              if (data.searchFilter.length < 1 || option.name.match(regOption)){
+              if (data.searchFilter.length < 1 || option.match(regOption)){
                 filtered.push(option);
               }
             }

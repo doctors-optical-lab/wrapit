@@ -1,18 +1,21 @@
 
-const { reactive, ref } = Vue
+const { reactive, ref, computed } = Vue
 
 const SunglassesCollectionComponent = {
     name: "Sunglasses Collection Component",
     delimiters: ["$%","%$"],
     setup(){
         const collection = reactive(collectionObject);
-        const search = ref('');
-        const filters = reactive({
-          frameModel = ''
-        });
+
+        function validateSelection(){
+			console.log('validate selection')
+		}
+		function getDropdownValues(){
+			console.log('get dropdown values')
+		}
 
         return {
-          collection, search, filters
+          collection, validateSelection, getDropdownValues
         }
     }
 }

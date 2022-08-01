@@ -1,9 +1,15 @@
 <div id="sunglasses-grid">
     <div class="filters">
-        <input class="model-search" placeholder="Search your frame model">
+        <SearchableDropDown
+            :options="collection.filters['Catalog Title']"
+            @selected="validateSelection"
+            @filter="getDropdownValues"
+            placeholder="Please select an option">
+        </SearchableDropDown>
+        {% comment %} <input class="model-search" placeholder="Search your frame model">
         <select class="model-select" v-model="filters.frameModel">
             <option v-for="model in collection.filters['Catalog Title']" :value="model">$%model%$</option>
-        </select>
+        </select> {% endcomment %}
     </div>
     <div class="body">
         <ul id="product-grid">
@@ -29,7 +35,10 @@
 
 <script>
     const { createApp } = Vue
-    createApp(SunglassesCollectionComponent).mount('#sunglasses-grid');
+    const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
+    
+    SunglassesCollectionApp.component('SearchableDropDown', SearchableDropDown);
+    SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
 
 
