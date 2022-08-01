@@ -12,7 +12,7 @@ const SunglassesCollectionComponent = {
         });
 
         return {
-          collection
+          collection, search, filters
         }
     }
 }
