@@ -3,14 +3,12 @@ const { reactive } = Vue
 
 const SunglassesCollectionComponent = {
     name: "Sunglasses Collection Component",
+    delimiters: ["$%","%$"],
     setup(){
-        const data = reactive({ 
-          //filter sunglasses by brand using pageData.metafields.brand
-          "collection-object": collectionObject
-        })
+        const collection = reactive(collectionObject)
 
         return {
-          data
+          collection
         }
     }
 }

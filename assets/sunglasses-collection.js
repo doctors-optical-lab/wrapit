@@ -1,1 +1,1 @@
-const{reactive:reactive}=Vue,SunglassesCollectionComponent={name:"Sunglasses Collection Component",setup:()=>({data:reactive({"collection-object":collectionObject})})};
+const{reactive:reactive}=Vue,SunglassesCollectionComponent={name:"Sunglasses Collection Component",delimiters:["$%","%$"],setup:()=>({collection:reactive(collectionObject)})};
