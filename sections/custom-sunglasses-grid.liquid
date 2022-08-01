@@ -1,14 +1,13 @@
 <div id="sunglasses-grid">
     <div class="filters">
-
+        <input class="model-search" placeholder="Search your frame model">
+        <select class="model-select">
+            <option v-for="model in collection.filters['Category Model']" :value="model">$%model%$</option>
+        </select>
     </div>
     <div class="body">
         <ul id="product-grid">
         {%- for product in collection.products -%}
-          {% assign lazy_load = false %}
-          {%- if forloop.index > 2 -%}
-            {%- assign lazy_load = true -%}
-          {%- endif -%}
           <li class="grid__item">
                 <a class="product-card" href="{{product.url}}">
                     <img
