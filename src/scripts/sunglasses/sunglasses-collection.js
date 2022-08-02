@@ -4,8 +4,8 @@ const SunglassesCollectionComponent = {
     setup(){
         const collection = reactive(collectionObject);
 
-        function validateSelection(){
-			console.log('validate selection')
+        function validateSelection(event){
+			console.log(event)
 		}
 
         return {

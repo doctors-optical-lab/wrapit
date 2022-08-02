@@ -2,7 +2,7 @@
 
 <SearchableDropDown
     :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
-    @selected="validateSelection"
+    @selected="validateSelection(event)"
     placeholder="Please select an option">
 </SearchableDropDown> 
 
