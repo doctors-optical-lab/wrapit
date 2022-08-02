@@ -28,7 +28,7 @@ const SearchableDropDown = {
                 @mousedown="selectOption(option)"
                 v-for="(option, index) in filteredOptions"
                 :key="index">
-                {{ option || '-' }}
+                $% option || '-' %$
             </div>
         </div>
     </div>
