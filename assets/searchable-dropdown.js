@@ -48,7 +48,7 @@ const SearchableDropDown = {
     setup(props, { emit }){
         //DATA
         const data = reactive({
-            selected: {},
+            selected: '',
             optionsShown: false,
             searchFilter: ''
         })
@@ -57,8 +57,8 @@ const SearchableDropDown = {
         function selectOption(option) {
             data.selected = option;
             data.optionsShown = false;
-            data.searchFilter = data.selected;
-            emit('selected', data.selected);
+            data.searchFilter = option;
+            emit('selected', option);
         }
 
         function showOptions(){
