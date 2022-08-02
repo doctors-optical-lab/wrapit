@@ -75,7 +75,7 @@ const SearchableDropDown = {
               data.searchFilter = data.selected.name;
             }
             console.log('testexit');
-            
+
             emit('selected', data.selected);
 
             data.optionsShown = false;
@@ -89,9 +89,8 @@ const SearchableDropDown = {
         //COMPUTED
         const filteredOptions = computed(() => {
             const filtered = [];
-            const regOption = new RegExp(data.searchFilter, 'ig');
             for (const option of props.options) {
-              if (data.searchFilter.length < 1 || option.match(regOption)){
+              if (data.searchFilter.length < 1 || option.toLowercase().includes(data.searchFilter.toLowercase())){
                 filtered.push(option);
               }
             }
