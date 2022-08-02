@@ -24,7 +24,7 @@ const SearchableDropDown = {
         v-show="data.optionsShown">
             <div
                 class="dropdown-item"
-                @mousedown="selectOption(option)"
+                @click="selectOption(option)"
                 v-for="(option, index) in filteredOptions"
                 :key="index">
                 $% option || '-' %$
