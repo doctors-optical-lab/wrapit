@@ -69,6 +69,7 @@ const SearchableDropDown = {
         }
 
         function exit() {
+            console.log('exit')
             if (!data.selected.id) {
                 data.selected = {};
                 data.searchFilter = '';
