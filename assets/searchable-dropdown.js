@@ -1,1 +1,123 @@
-const SearchableDropDown={name:"Searchable Dropdown",delimiters:["$%","%$"],template:'\n    <div class="dropdown" v-if="options">\n\n        <input class="dropdown-input"\n        @focus="showOptions()"\n        @blur="exit()"\n        @keyup="monitorEnterKey"\n        v-model="data.searchFilter"\n        :placeholder="placeholder" />\n\n        <div class="dropdown-content"\n        v-show="data.optionsShown">\n            <div\n                class="dropdown-item"\n                @mousedown="selectOption(option)"\n                v-for="(option, index) in filteredOptions"\n                :key="index">\n                $% option || \'-\' %$\n            </div>\n        </div>\n    </div>\n    ',props:{options:{type:Array,required:!0,default:[]},placeholder:{type:String,required:!1,default:"Please select an option"}},emits:["selected","filter"],setup(e,{emit:n}){const t=reactive({selected:{},optionsShown:!1,searchFilter:""});function o(e){t.selected=e,t.optionsShown=!1,t.searchFilter=t.selected.name,n("selected",t.selected)}const s=computed((()=>{const n=[],o=new RegExp(t.searchFilter,"ig");for(const s of e.options)(t.searchFilter.length<1||s.match(o))&&n.push(s);return n}));return watch(t,(e=>{console.log(s),0===s.value.length?t.selected={}:t.selected=s.value[0]})),{data:t,filteredOptions:s,selectOption:o,showOptions:function(){t.searchFilter="",t.optionsShown=!0,console.log("showoptions")},exit:function(){t.selected.id?t.searchFilter=t.selected.name:(t.selected={},t.searchFilter=""),n("selected",t.selected),t.optionsShown=!1},monitorEnterKey:function(e){"Enter"===e.key&&s.value[0]&&o(s.value[0])}}}};
+/* USAGE
+
+<SearchableDropDown
+    :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
+    @selected="validateSelection"
+    placeholder="Please select an option">
+</SearchableDropDown> 
+
+*/
+const SearchableDropDown = {
+    name: "Searchable Dropdown",
+    delimiters: ["$%","%$"],
+    template: `
+    <div class="dropdown" v-if="options">
+
+        <input class="dropdown-input"
+        @focus="showOptions()"
+        @blur="exit()"
+        @keyup="monitorEnterKey"
+        v-model="data.searchFilter"
+        :placeholder="placeholder" />
+
+        <div class="dropdown-content"
+        v-show="data.optionsShown">
+            <div
+                class="dropdown-item"
+                @mousedown="selectOption(option)"
+                v-for="(option, index) in filteredOptions"
+                :key="index">
+                $% option || '-' %$
+            </div>
+        </div>
+    </div>
+    `,
+    props: {
+        options: {
+            type: Array,
+            required: true,
+            default: []
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: 'Please select an option'
+        }
+    },
+    emits: ['selected', 'filter'],
+    setup(props, { emit }){
+        //DATA
+        const data = reactive({
+            selected: {},
+            optionsShown: false,
+            searchFilter: ''
+        })
+
+        //METHODS
+        function selectOption(option) {
+            data.selected = option;
+            data.optionsShown = false;
+            data.searchFilter = data.selected.name;
+            emit('selected', data.selected);
+        }
+
+        function showOptions(){
+            data.searchFilter = '';
+            data.optionsShown = true;
+            console.log('showoptions');
+        }
+
+        function exit() {
+            if (!data.selected.id) {
+              data.selected = {};
+              data.searchFilter = '';
+            } else {
+              data.searchFilter = data.selected.name;
+            }
+            console.log('testexit');
+            
+            emit('selected', data.selected);
+
+            data.optionsShown = false;
+        }
+
+        function monitorEnterKey(event) {
+            if (event.key === "Enter" && filteredOptions.value[0])
+            selectOption(filteredOptions.value[0]);
+        }
+
+        //COMPUTED
+        const filteredOptions = computed(() => {
+            const filtered = [];
+            const regOption = new RegExp(data.searchFilter, 'ig');
+            for (const option of props.options) {
+              if (data.searchFilter.length < 1 || option.match(regOption)){
+                filtered.push(option);
+              }
+            }
+            return filtered;
+        })
+
+        //WATCH
+        watch(data, (values) => {
+            console.log(filteredOptions)
+            if (filteredOptions.value.length === 0) {
+              data.selected = {};
+            } else {
+              data.selected = filteredOptions.value[0];
+            }
+        })
+
+        return {
+            data,
+            filteredOptions,
+            selectOption,
+            showOptions,
+            exit,
+            monitorEnterKey,
+        }
+    }
+}
+
+
+
