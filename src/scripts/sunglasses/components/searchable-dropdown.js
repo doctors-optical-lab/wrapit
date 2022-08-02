@@ -65,7 +65,6 @@ const SearchableDropDown = {
         function showOptions(){
             data.searchFilter = '';
             data.optionsShown = true;
-            console.log('showoptions');
         }
 
         function exit() {
@@ -98,8 +97,7 @@ const SearchableDropDown = {
         })
 
         //WATCH
-        watch(data, (values) => {
-            console.log(filteredOptions)
+        watch(filteredOptions, (values) => {
             if (filteredOptions.value.length === 0) {
               data.selected = {};
             } else {
