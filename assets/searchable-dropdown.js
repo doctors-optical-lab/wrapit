@@ -15,7 +15,7 @@ const SearchableDropDown = {
 
         <input class="dropdown-input"
         @focus="showOptions()"
-        @blur="exit(event)"
+        @blur="exit($event)"
         @keyup="monitorEnterKey"
         v-model="data.searchFilter"
         :placeholder="placeholder" />
