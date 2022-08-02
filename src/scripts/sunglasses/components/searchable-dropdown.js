@@ -96,13 +96,13 @@ const SearchableDropDown = {
         })
 
         //WATCH
-        watch(searchFilter, (searchFilterValue) => {
+        watch(data, (values) => {
             if (filteredOptions.value.length === 0) {
               data.selected = {};
             } else {
               data.selected = filteredOptions.value[0];
             }
-            emit('filter', searchFilterValue);
+            emit('filter', values.searchFilter);
         })
 
         return {

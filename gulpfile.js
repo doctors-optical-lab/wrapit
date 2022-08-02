@@ -24,7 +24,7 @@ function jsTask(){
 }
 
 function watchTask(){
-    watch(['src/styles/*.scss', 'src/scripts/*/*.js'], { interval: 1000 }, parallel(compilescss, jsTask))
+    watch(['src/styles/*.scss', 'src/scripts/**/**/*.js'], { interval: 1000 }, parallel(compilescss, jsTask))
 }
 
 exports.default = series(
