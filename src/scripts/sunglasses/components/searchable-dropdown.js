@@ -15,7 +15,7 @@ const SearchableDropDown = {
 
         <input class="dropdown-input"
         @focus="showOptions()"
-        @blur="exit()"
+        @blur="exit(event)"
         @keyup="monitorEnterKey"
         v-model="data.searchFilter"
         :placeholder="placeholder" />
@@ -67,8 +67,8 @@ const SearchableDropDown = {
             data.optionsShown = true;
         }
 
-        function exit() {
-            console.log('exit')
+        function exit(event) {
+            console.log(event)
             if (!data.selected.id) {
                 data.selected = {};
                 data.searchFilter = '';
