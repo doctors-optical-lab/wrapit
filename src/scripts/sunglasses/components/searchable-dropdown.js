@@ -1,11 +1,11 @@
 /* USAGE
 
-<Dropdown
+<SearchableDropDown
     :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
     @selected="validateSelection"
     @filter="getDropdownValues"
     placeholder="Please select an option">
-</Dropdown> 
+</SearchableDropDown> 
 
 */
 const SearchableDropDown = {

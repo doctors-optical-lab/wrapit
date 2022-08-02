@@ -1,11 +1,11 @@
 <div id="sunglasses-grid">
     <div class="filters">
-        <SearchableDropDown
+        <searchabledropdown
             :options="collection.filters['Catalog Title']"
             @selected="validateSelection"
             @filter="getDropdownValues"
             placeholder="Please select an option">
-        </SearchableDropDown>
+        </searchabledropdown>
         {% comment %} <input class="model-search" placeholder="Search your frame model">
         <select class="model-select" v-model="filters.frameModel">
             <option v-for="model in collection.filters['Catalog Title']" :value="model">$%model%$</option>
@@ -38,7 +38,7 @@
 
 <script>
     const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
-    SunglassesCollectionApp.component('SearchableDropDown', SearchableDropDown);
+    SunglassesCollectionApp.component('searchabledropdown', SearchableDropDown);
     SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
 
