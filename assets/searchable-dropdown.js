@@ -11,7 +11,7 @@ const SearchableDropDown = {
     name: "Searchable Dropdown",
     delimiters: ["$%","%$"],
     template: `
-    <div class="dropdown" v-if="options">
+    <div :id="id" class="dropdown" v-if="options">
 
         <input class="dropdown-input"
         @focus="showOptions()"
@@ -32,10 +32,13 @@ const SearchableDropDown = {
     </div>
     `,
     props: {
+        id: {
+            type: String,
+            required: true
+        },
         options: {
             type: Array,
-            required: true,
-            default: []
+            required: true
         },
         placeholder: {
             type: String,
