@@ -105,7 +105,7 @@ const SearchableDropDown = {
         })
 
         //MOUNTED
-        onMounted(() => window.addEventListener('click', exit));
+        onMounted(() => window.addEventListener('click', () => data.optionsShown = false));
 
         return {
             data,
