@@ -65,6 +65,7 @@ const SearchableDropDown = {
         function showOptions(){
             data.searchFilter = '';
             data.optionsShown = true;
+            console.log('showoptions');
         }
 
         function exit() {
