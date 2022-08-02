@@ -11,7 +11,7 @@ const SearchableDropDown = {
     name: "Searchable Dropdown",
     delimiters: ["$%","%$"],
     template: `
-    <div :id="id" class="dropdown" v-if="options">
+    <div :id="id" @click.stop="" class="dropdown" v-if="options">
 
         <input class="dropdown-input"
         @focus="showOptions()"
@@ -54,8 +54,7 @@ const SearchableDropDown = {
             optionsShown: false,
             searchFilter: ''
         })
-
-        //METHODS
+        
         function selectOption(option) {
             console.log('option-selected: ', option)
             data.selected = option;
@@ -104,6 +103,9 @@ const SearchableDropDown = {
               data.selected = filteredOptions.value[0];
             }
         })
+
+        //MOUNTED
+        onMounted(() => window.addEventListener('click', exit));
 
         return {
             data,
