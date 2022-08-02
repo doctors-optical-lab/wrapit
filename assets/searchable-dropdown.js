@@ -57,7 +57,7 @@ const SearchableDropDown = {
         function selectOption(option) {
             data.selected = option;
             data.optionsShown = false;
-            data.searchFilter = data.selected.name;
+            data.searchFilter = data.selected;
             emit('selected', data.selected);
         }
 
@@ -72,7 +72,7 @@ const SearchableDropDown = {
               data.selected = {};
               data.searchFilter = '';
             } else {
-              data.searchFilter = data.selected.name;
+              data.searchFilter = data.selected;
             }
             console.log('testexit');
 
@@ -90,8 +90,9 @@ const SearchableDropDown = {
         const filteredOptions = computed(() => {
             const filtered = [];
             for (const option of props.options) {
-                if (!option.toLowerCase().includes(data.searchFilter.toLowerCase())) return
-                filtered.push(option);
+                if (!option.toLowerCase().includes(data.searchFilter.toLowerCase())){
+                    filtered.push(option);
+                }
             }
             return filtered;
         })
