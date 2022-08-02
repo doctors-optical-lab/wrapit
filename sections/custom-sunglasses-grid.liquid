@@ -1,11 +1,11 @@
 <div id="sunglasses-grid">
     <div class="filters">
-        <SearchableDropDown
-            id="model-search"
+        <dropdown
+            :id="model-search"
             :options="collection.filters['Catalog Title']"
             @selected="validateSelection($event)"
             placeholder="Search frame model">
-        </SearchableDropDown>
+        </dropdown>
     </div>
     <div class="body">
         <ul id="product-grid">
@@ -34,7 +34,7 @@
 
 <script>
     const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
-    SunglassesCollectionApp.component('SearchableDropDown', SearchableDropDown);
+    SunglassesCollectionApp.component('dropdown', SearchableDropDown);
     SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
 
