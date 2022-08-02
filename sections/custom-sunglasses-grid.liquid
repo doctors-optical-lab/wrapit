@@ -2,7 +2,7 @@
     <div class="filters">
         <searchabledropdown
             :options="collection.filters['Catalog Title']"
-            @selected="validateSelection(event)"
+            @selected="validateSelection($event)"
             placeholder="Please select an option">
         </searchabledropdown>
     </div>
