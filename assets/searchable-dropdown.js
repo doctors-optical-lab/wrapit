@@ -72,8 +72,7 @@ const SearchableDropDown = {
                 data.selected = '';
                 data.searchFilter = '';
                 data.optionsShown = false;
-            } 
-            else {
+            } else {
                 data.searchFilter = data.selected;
                 emit('selected', data.selected);
             }
