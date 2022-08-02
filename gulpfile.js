@@ -18,7 +18,7 @@ function compilescss() {
 
 function jsTask(){
     return src('src/scripts/**/**/*.js', { nodir: true })
-        .pipe(terser())
+        // .pipe(terser())
         .pipe(flatten())
         .pipe(dest('assets'));
 }
