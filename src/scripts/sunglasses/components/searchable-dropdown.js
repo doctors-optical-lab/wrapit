@@ -88,7 +88,7 @@ const SearchableDropDown = {
         const filteredOptions = computed(() => {
             const filtered = [];
             for (const option of props.options) {
-                if (option.toLowerCase().includes(data.searchFilter.toLowerCase())){
+                if (data.searchFilter.length < 1 || option.toLowerCase().includes(data.searchFilter.toLowerCase())){
                     filtered.push(option);
                 }
             }
