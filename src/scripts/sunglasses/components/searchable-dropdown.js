@@ -71,12 +71,12 @@ const SearchableDropDown = {
             if (!data.selected) {
                 data.selected = '';
                 data.searchFilter = '';
-            } else {
+                data.optionsShown = false;
+            } 
+            else {
                 data.searchFilter = data.selected;
+                emit('selected', data.selected);
             }
-            emit('selected', data.selected);
-
-            data.optionsShown = false;
         }
 
         function monitorEnterKey(event) {
