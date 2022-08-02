@@ -18,11 +18,11 @@ const SearchableDropDown = {
         @focus="showOptions()"
         @blur="exit()"
         @keyup="monitorEnterKey"
-        v-model="searchFilter"
+        v-model="data.searchFilter"
         :placeholder="placeholder" />
 
         <div class="dropdown-content"
-        v-show="optionsShown">
+        v-show="data.optionsShown">
             <div
                 class="dropdown-item"
                 @mousedown="selectOption(option)"
