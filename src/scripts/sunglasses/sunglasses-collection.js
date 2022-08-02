@@ -1,6 +1,3 @@
-
-const { reactive, ref, computed } = Vue
-
 const SunglassesCollectionComponent = {
     name: "Sunglasses Collection Component",
     delimiters: ["$%","%$"],

@@ -8,8 +8,6 @@
 </Dropdown> 
 
 */
-const { reactive, ref, computed, watch } = Vue
-
 const SearchableDropDown = {
     name: "Searchable Dropdown",
     delimiters: ["$%","%$"],

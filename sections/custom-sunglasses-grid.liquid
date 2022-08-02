@@ -30,13 +30,14 @@
 </div>
 
 {% render 'object-collection' %}
+<script>
+    const { createApp, reactive, ref, computed, watch } = Vue
+</script>
 <script src="{{ 'searchable-dropdown.js' | asset_url }}"></script>
 <script src="{{ 'sunglasses-collection.js' | asset_url }}"></script>
 
 <script>
-    const { createApp } = Vue
     const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
-    
     SunglassesCollectionApp.component('SearchableDropDown', SearchableDropDown);
     SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
