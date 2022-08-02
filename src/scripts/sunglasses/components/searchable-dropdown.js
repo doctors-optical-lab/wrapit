@@ -11,18 +11,6 @@
 const SearchableDropDown = {
     name: "Searchable Dropdown",
     delimiters: ["$%","%$"],
-    props: {
-        options: {
-            type: Array,
-            required: true,
-            default: []
-        },
-        placeholder: {
-            type: String,
-            required: false,
-            default: 'Please select an option'
-        }
-    },
     template: `
     <div class="dropdown" v-if="options">
 
@@ -45,16 +33,26 @@ const SearchableDropDown = {
         </div>
     </div>
     `,
-    setup(){
+    props: {
+        options: {
+            type: Array,
+            required: true,
+            default: []
+        },
+        placeholder: {
+            type: String,
+            required: false,
+            default: 'Please select an option'
+        }
+    },
+    emits: ['selected', 'filter'],
+    setup(props, { emit }){
         //DATA
         const data = reactive({
             selected: {},
             optionsShown: false,
             searchFilter: ''
         })
-
-        //EMITS
-        const emit = defineEmits(['selected', 'filter'])
 
         //METHODS
         function selectOption(option) {
