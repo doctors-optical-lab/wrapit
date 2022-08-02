@@ -3,7 +3,6 @@
 <SearchableDropDown
     :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
     @selected="validateSelection"
-    @filter="getDropdownValues"
     placeholder="Please select an option">
 </SearchableDropDown> 
 
@@ -98,12 +97,12 @@ const SearchableDropDown = {
 
         //WATCH
         watch(data, (values) => {
+            console.log(filteredOptions)
             if (filteredOptions.value.length === 0) {
               data.selected = {};
             } else {
               data.selected = filteredOptions.value[0];
             }
-            emit('filter', values.searchFilter);
         })
 
         return {

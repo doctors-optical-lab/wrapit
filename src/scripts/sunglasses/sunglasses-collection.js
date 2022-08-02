@@ -7,12 +7,9 @@ const SunglassesCollectionComponent = {
         function validateSelection(){
 			console.log('validate selection')
 		}
-		function getDropdownValues(){
-			console.log('get dropdown values')
-		}
 
         return {
-          collection, validateSelection, getDropdownValues
+          collection, validateSelection
         }
     }
 }
