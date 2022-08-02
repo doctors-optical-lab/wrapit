@@ -55,6 +55,7 @@ const SearchableDropDown = {
 
         //METHODS
         function selectOption(option) {
+            console.log(option)
             data.selected = option;
             data.optionsShown = false;
             data.searchFilter = option;
@@ -69,13 +70,11 @@ const SearchableDropDown = {
 
         function exit() {
             if (!data.selected.id) {
-              data.selected = {};
-              data.searchFilter = '';
+                data.selected = {};
+                data.searchFilter = '';
             } else {
-              data.searchFilter = data.selected;
+                data.searchFilter = data.selected;
             }
-            console.log('testexit');
-
             emit('selected', data.selected);
 
             data.optionsShown = false;
