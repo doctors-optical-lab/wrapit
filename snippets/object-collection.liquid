@@ -41,11 +41,14 @@
         ],
         "filters":{
             {% for filter in collection.filters %}
-                "{{ filter.param_name }}":[
+                "{{ filter.label }}":{
+                  "parameter-name": "{{ filter.param_name}}"
+                  "values": [
                     {% for value in filter.values %}
                         "{{value.value}}"{% if forloop.last == true%}{% else %}, {%endif%}
                     {% endfor %}
-                ]{% if forloop.last == true%}{% else %}, {%endif%}
+                  ]
+                }{% if forloop.last == true%}{% else %}, {%endif%}
             {% endfor %}
         }
     }
