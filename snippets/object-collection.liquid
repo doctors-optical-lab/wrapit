@@ -42,7 +42,7 @@
         "filters":{
             {% for filter in collection.filters %}
                 "{{ filter.label }}":{
-                  "parameter-name": "{{ filter.param_name}}"
+                  "parameter-name": "{{ filter.param_name}}",
                   "values": [
                     {% for value in filter.values %}
                         "{{value.value}}"{% if forloop.last == true%}{% else %}, {%endif%}
