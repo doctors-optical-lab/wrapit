@@ -8,11 +8,11 @@
         </dropdown>
 
         <button class="filter-button" @click="filterModal = true">Filters</button>
-        <filter
+        <filters
             :active="filterModal"
             :filters="collection.filters"
-            @filter="filterFrames($event)"
-        ></filter>
+            @filter="filterFrames($event)">
+        </filters>
     </div>
     <div class="body">
         <ul id="product-grid">
@@ -38,9 +38,9 @@
 <script src="{{ 'sunglasses-collection.js' | asset_url }}"></script>
 
 <script>
-    const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
+    const SunglassesCollectionApp = createApp(SunglassesCollectionComponent);
     SunglassesCollectionApp.component('dropdown', SearchableDropDown);
-    SunglassesCollectionApp.component('filter', FilterModal);
+    SunglassesCollectionApp.component('filters', FilterModal);
     SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
 
