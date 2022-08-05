@@ -18,7 +18,7 @@ const SunglassesCollectionComponent = {
 		}
 
         return {
-          collection, selectFrame, createFilterUrl, filterFrames
+          collection, filterModal, selectFrame, createFilterUrl, filterFrames
         }
     }
 }
