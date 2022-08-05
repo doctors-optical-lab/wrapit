@@ -4,14 +4,14 @@ const SunglassesCollectionComponent = {
     setup(){
         const collection = reactive(collectionObject);
 
-        function validateSelection(event){
-			console.log(event)
+        function selectFrame(event){
+			window.location.href += createFilter(collection.filters['Catalog Title']['parameter-name'], event)
 		}
-		function createFilter(property, value){
-			return `?filter.p.m.custom.catalog_title=Erika+RB4171`
+		function createFilter(parameter, value){
+			return `${parameter}=${value.replace(' ', '+')}`
 		}
         return {
-          collection, validateSelection
+          collection, selectFrame
         }
     }
 }

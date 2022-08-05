@@ -3,7 +3,7 @@
         <dropdown
             id="model-search"
             :options="collection.filters['Catalog Title'].values"
-            @selected="validateSelection($event)"
+            @selected="selectFrame($event)"
             placeholder="Search frame model">
         </dropdown>
     </div>
