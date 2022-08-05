@@ -10,13 +10,13 @@ const FilterModal = {
         <div class="frame-material-container">
             <h3>Step 1: Select your frame material</h3>
             <ul class="selections">
-                <li class="selection" v-for="material in filters['Frame Material'].values>$%material%$</li>
+                <li class="selection" v-for="material in filters['Frame Material'].values">$%material%$</li>
             </ul>
         </div>
         <div class="frame-shape-modal">
-            <h3>Step 1: Select your frame shape</h3>
+            <h3>Step 2: Select your frame shape</h3>
             <ul class="selections">
-                <li class="selection" v-for="shape in filters['Frame Shape'].values>$%shape%$</li>
+                <li class="selection" v-for="shape in filters['Frame Shape'].values">$%shape%$</li>
             </ul>
         </div>
     </div>
