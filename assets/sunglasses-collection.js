@@ -11,7 +11,7 @@ const SunglassesCollectionComponent = {
 			return `?${parameter}=${value.replace(' ', '+')}`
 		}
         return {
-          collection, selectFrame
+          collection, selectFrame, createFilter
         }
     }
 }
