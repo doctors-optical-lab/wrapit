@@ -6,6 +6,13 @@
             @selected="selectFrame($event)"
             placeholder="Search frame model">
         </dropdown>
+
+        <button class="filter-button" @click="filterModal = true">Filters</button>
+        <filter
+            :active="filterModal"
+            :filters="collection.filters"
+            @filter="filterFrames($event)"
+        ></filter>
     </div>
     <div class="body">
         <ul id="product-grid">
@@ -26,12 +33,14 @@
 </div>
 
 {% render 'object-collection' %}
-<script src="{{ 'searchable-dropdown.js' | asset_url }}"></script>
+<script src="{{ 'sunglasses-searchable-dropdown.js' | asset_url }}"></script>
+<script src="{{ 'sunglasses-filter-modal.js' | asset_url }}"></script>
 <script src="{{ 'sunglasses-collection.js' | asset_url }}"></script>
 
 <script>
     const SunglassesCollectionApp = createApp(SunglassesCollectionComponent)
     SunglassesCollectionApp.component('dropdown', SearchableDropDown);
+    SunglassesCollectionApp.component('filter', FilterModal);
     SunglassesCollectionApp.mount('#sunglasses-grid');
 </script>
 

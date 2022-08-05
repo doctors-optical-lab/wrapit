@@ -3,17 +3,22 @@ const SunglassesCollectionComponent = {
     delimiters: ["$%","%$"],
     setup(){
         const collection = reactive(collectionObject);
+		const filterModal = ref(false);
 
         function selectFrame(event){
-			window.location.href = createFilter(collection.filters['Catalog Title']['parameter-name'], event)
+			window.location.href = createFilterUrl(collection.filters['Catalog Title']['parameter-name'], event)
 		}
 
-		function createFilter(parameter, value){
+		function createFilterUrl(parameter, value){
 			return `?${parameter}=${value.replace(' ', '+')}`
 		}
-		
+
+		function filterFrames(event){
+			console.log(event);
+		}
+
         return {
-          collection, selectFrame, createFilter
+          collection, selectFrame, createFilter, filterFrames
         }
     }
 }
