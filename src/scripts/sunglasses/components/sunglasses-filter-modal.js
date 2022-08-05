@@ -4,7 +4,7 @@ const FilterModal = {
     template: `
     <div v-if="active" id="filter-modal">
         <h2>Filter Frames</h2>
-        <button class="close-modal" @click="active=false">X</button>
+        <button class="close-modal" @click="$emit('close')">X</button>
         <p>Don’t know the model of your frame? Let us guide you step by step.</p>
 
         <div class="frame-material-container">
@@ -31,7 +31,7 @@ const FilterModal = {
             required: true
         }
     },
-    emits: ['filter'],
+    emits: ['filter', 'close'],
     setup(){
         return {
         }

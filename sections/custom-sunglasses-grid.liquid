@@ -11,7 +11,8 @@
         <filters
             :active="filterModal"
             :filters="collection.filters"
-            @filter="filterFrames($event)">
+            @filter="filterFrames($event)"
+            @close="filterModal = false">
         </filters>
     </div>
     <div class="body">
