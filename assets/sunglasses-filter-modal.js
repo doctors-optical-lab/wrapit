@@ -1,5 +1,5 @@
 const FilterModal = {
-    name = "Filter Modal",
+    name: "Filter Modal",
     delimiters: ["$%","%$"],
     template: `
     <div v-if="active" id="filter-modal">
