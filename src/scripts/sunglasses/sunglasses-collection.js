@@ -7,7 +7,9 @@ const SunglassesCollectionComponent = {
         function validateSelection(event){
 			console.log(event)
 		}
-
+		function createFilter(property, value){
+			return `?filter.p.m.custom.catalog_title=Erika+RB4171`
+		}
         return {
           collection, validateSelection
         }

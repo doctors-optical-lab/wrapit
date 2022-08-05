@@ -56,7 +56,6 @@ const SearchableDropDown = {
         })
         
         function selectOption(option) {
-            console.log('option-selected: ', option)
             data.selected = option;
             data.optionsShown = false;
             data.searchFilter = option;
