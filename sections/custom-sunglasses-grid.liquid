@@ -14,6 +14,16 @@
             @filter="activeFilters.material = $event.material; activeFilters.shape = $event.shape"
             @close="filterModal = false">
         </filters>
+
+        <div class="active-filters">
+            <template v-for="(filterValue, filterParameter) in activeFilters">
+                <button  
+                    v-if="filterValue"
+                    :class="filterParameter+'-filter'"
+                    @click="filterValue = ''"
+                >$%filterValue%$</button>
+            </template>
+        </div>
     </div>
     <div class="body">
         <ul id="product-grid">
