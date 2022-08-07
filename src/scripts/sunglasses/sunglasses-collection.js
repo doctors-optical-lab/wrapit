@@ -7,15 +7,15 @@ const SunglassesCollectionComponent = {
         const activeFilters = reactive({
             material: '',
             shape: ''
-        })
+        });
 
         function selectFrame(event){
 			window.location.href = `?${createFilterUrl(collection.filters['Catalog Title']['parameter-name'], event)}`
-		}
+		};
 
 		function createFilterUrl(parameter, value){
 			return `${parameter}=${value.replace(' ', '+')}`
-		}
+		};
 
 		//CHANGE URL BASED ON FILTERS
 		watch(activeFilters, (values) => {
