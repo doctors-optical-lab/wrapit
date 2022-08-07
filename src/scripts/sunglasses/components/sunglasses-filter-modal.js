@@ -29,7 +29,7 @@ const FilterModal = {
             </ul>
         </div>
         
-        <button class="submit" @click="$emit('filter', activeFilters)"
+        <button class="submit" @click="$emit('filter', activeFilters)">Submit</button>
     </div>
     `,
     props: {
