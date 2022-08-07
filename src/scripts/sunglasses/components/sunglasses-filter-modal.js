@@ -29,7 +29,11 @@ const FilterModal = {
             </ul>
         </div>
         
-        <button class="submit" @click="$emit('filter', activeFilters); $emit('close')">Submit</button>
+        <button 
+        class="submit" 
+        :class="{'active': activeFilters.material && activeFilters.shape}"
+        @click="$emit('close'); $emit('filter', activeFilters);"
+        >Submit</button>
     </div>
     `,
     props: {
