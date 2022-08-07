@@ -4,6 +4,10 @@ const SunglassesCollectionComponent = {
     setup(){
         const collection = reactive(collectionObject);
 		const filterModal = ref(false);
+        const activeFilters = reactive({
+            material: '',
+            shape: ''
+        })
 
         function selectFrame(event){
 			window.location.href = `?${createFilterUrl(collection.filters['Catalog Title']['parameter-name'], event)}`
@@ -13,14 +17,14 @@ const SunglassesCollectionComponent = {
 			return `${parameter}=${value.replace(' ', '+')}`
 		}
 
-		function filterFrames(activeFilters){
-			let materialURL = createFilterUrl(collection.filters['Frame Material']['parameter-name'], activeFilters.material),
-				shapeURL = createFilterUrl(collection.filters['Frame Shape']['parameter-name'], activeFilters.shape);
+		watch(activeFilters, (values) => {
+			let materialURL = createFilterUrl(collection.filters['Frame Material']['parameter-name'], values.material),
+				shapeURL = createFilterUrl(collection.filters['Frame Shape']['parameter-name'], values.shape);
 			
 			window.location.href = `?${materialURL}&${shapeURL};`
-		}
+		})
         return {
-          collection, filterModal, selectFrame, createFilterUrl, filterFrames
+          collection, filterModal, activeFilters, selectFrame, createFilterUrl, filterFrames
         }
     }
 }
