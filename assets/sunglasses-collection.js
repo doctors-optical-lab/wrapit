@@ -17,14 +17,16 @@ const SunglassesCollectionComponent = {
 			return `${parameter}=${value.replace(' ', '+')}`
 		}
 
+		//CHANGE URL BASED ON FILTERS
 		watch(activeFilters, (values) => {
 			let materialURL = createFilterUrl(collection.filters['Frame Material']['parameter-name'], values.material),
 				shapeURL = createFilterUrl(collection.filters['Frame Shape']['parameter-name'], values.shape);
 			
 			window.location.href = `?${materialURL}&${shapeURL};`
 		})
+
         return {
-          collection, filterModal, activeFilters, selectFrame, createFilterUrl, filterFrames
+          collection, filterModal, activeFilters, selectFrame, createFilterUrl
         }
     }
 }
