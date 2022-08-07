@@ -11,7 +11,7 @@
         <filters
             :active="filterModal"
             :filters="collection.filters"
-            @filter="activeFilters = $event"
+            @filter="activeFilters.material = $event.material; activeFilters.shape = $event.shape"
             @close="filterModal = false">
         </filters>
     </div>
