@@ -23,10 +23,13 @@ const SunglassesCollectionComponent = {
 		}
 		//CHANGE URL BASED ON FILTERS
 		watch(activeFilters, (values) => {
-			let materialURL = createFilterUrl(collection.filters['Frame Material']['parameter-name'], values.material),
-				shapeURL = createFilterUrl(collection.filters['Frame Shape']['parameter-name'], values.shape);
-			
-			window.location.href = `?${materialURL}&${shapeURL};`
+			if(!activeFilters.material || !activeFilters.shape) window.location.href = '';
+			else{
+				let materialURL = createFilterUrl(collection.filters['Frame Material']['parameter-name'], values.material),
+					shapeURL = createFilterUrl(collection.filters['Frame Shape']['parameter-name'], values.shape);
+				
+				window.location.href = `?${materialURL}&${shapeURL};`
+			}
 		})
 
         return {
