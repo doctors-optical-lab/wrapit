@@ -14,8 +14,7 @@
     },
     "order": [
       "banner",
-      "product-controls",
-      "product-grid"
+      "product-controls"
     ]
   }
   

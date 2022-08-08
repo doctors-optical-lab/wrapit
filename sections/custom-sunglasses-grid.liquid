@@ -1,3 +1,5 @@
+{% comment %} STILL NEEDS TO WORK ON PAGINATION {% endcomment %}
+
 <div id="sunglasses-grid">
     <div class="filters">
         <dropdown
@@ -18,26 +20,45 @@
         <div class="active-filters">
             <button  
                 v-if="activeFilters.material && activeFilters.shape"
-                :class="clear-filters"
+                class="remove-filters"
                 @click="clearFilters()"
             >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
         </div>
     </div>
     <div class="body">
-        <ul id="product-grid">
-        {%- for product in collection.products -%}
-          <li class="grid__item">
-                <a class="product-card" href="{{product.url}}">
-                    <img
-                        src="{{ product.featured_image | image_url: width: 200 }}"
-                        width="200"
-                        height="200"
-                    >
-                    <p>{{ product.title }}</p>
-                </a>
-          </li>
-        {%- endfor -%}
-      </ul>
+
+        <div class="product-grid-container">
+            {%- paginate collection.products by section.settings.products_per_page -%}
+              {%- if collection.products.size == 0 -%}
+                <div class="empty-collection-container">
+                    <p>Oops. It looks like your frame model does not exist in our catalog. Although we don’t offer DIY lens installation for this scenario, we can professionally install it for you for a $20 surcharge. <span><button>How it works</button></span></p>
+                    <button class="to-custom-lenses">Yes. Id like to have my lens installed for me </button>
+                    <button @click="clearFilters()" class="clear-filters">Clear Filters</button>
+                </div>
+              {%- else -%}
+                <div class="collection">
+                  <ul class="product-grid">
+                    {%- for product in collection.products -%}
+                      <li class="grid__item">
+                        <a class="product-card" href="{{product.url}}">
+                            <img
+                                src="{{ product.featured_image | image_url: width: 200 }}"
+                                width="200"
+                                height="200"
+                            >
+                            <p>{{ product.title }}</p>
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+          
+                  {%- if paginate.pages > 1 -%}
+                    {% render 'pagination', paginate: paginate, anchor: '' %}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endpaginate -%}
+          </div>
     </div>
 </div>
 
