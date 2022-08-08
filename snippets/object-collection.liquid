@@ -47,6 +47,11 @@
                     {% for value in filter.values %}
                         "{{value.value}}"{% if forloop.last == true%}{% else %}, {%endif%}
                     {% endfor %}
+                  ],
+                  "active-values": [
+                    {% for value in filter.active_values %}
+                        "{{value.value}}"{% if forloop.last == true%}{% else %}, {%endif%}
+                    {% endfor %}
                   ]
                 }{% if forloop.last == true%}{% else %}, {%endif%}
             {% endfor %}
