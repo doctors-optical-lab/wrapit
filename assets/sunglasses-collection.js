@@ -5,8 +5,8 @@ const SunglassesCollectionComponent = {
         const collection = reactive(collectionObject);
 		const filterModal = ref(false);
         const activeFilters = reactive({
-            material: '',
-            shape: ''
+            material: collection.filters['Frame Material']['active-values'][0],
+            shape: collection.filters['Frame Shape']['active-values'][0]
         });
 
         function selectFrame(event){
