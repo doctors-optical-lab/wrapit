@@ -16,10 +16,11 @@
         </filters>
 
         <div class="active-filters">
-                <button  
-                    :class="clear-filters"
-                    @click="clearFilters()"
-                >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
+            <button  
+                v-if="activeFilters.material && activeFilters.shape"
+                :class="clear-filters"
+                @click="clearFilters()"
+            >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
         </div>
     </div>
     <div class="body">
