@@ -16,13 +16,10 @@
         </filters>
 
         <div class="active-filters">
-            <template v-for="(filterValue, filterParameter) in activeFilters">
                 <button  
-                    v-if="filterValue"
-                    :class="filterParameter+'-filter'"
-                    @click="activeFilters[filterParameter] = ''"
-                >$%filterValue%$</button>
-            </template>
+                    :class="clear-filters"
+                    @click="clearFilters()"
+                >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
         </div>
     </div>
     <div class="body">
