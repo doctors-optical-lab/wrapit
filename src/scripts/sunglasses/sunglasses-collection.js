@@ -20,6 +20,7 @@ const SunglassesCollectionComponent = {
 		function clearFilters(){
 			activeFilters.material = '';
 			activeFilters.shape = '';
+			console.log('clear')
 		}
 		//CHANGE URL BASED ON FILTERS
 		watch(activeFilters, (values) => {
