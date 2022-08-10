@@ -1,11 +1,11 @@
 {
-    "sections": {
-      "product-controls": {
-        "type": "custom-sunglasses-grid"
-      }
-    },
-    "order": [
-      "product-controls"
-    ]
-  }
+  "sections": {
+    "product-controls": {
+      "type": "custom-sunglasses-grid"
+    }
+  },
+  "order": [
+    "product-controls"
+  ]
+}
   
