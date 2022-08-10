@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const concat = require('gulp-concat');
 const terser = require('gulp-terser');
 const sourcemaps = require('gulp-sourcemaps');
 const flatten = require('gulp-flatten');

@@ -32,7 +32,7 @@
               {%- if collection.products.size == 0 -%}
                 <div class="empty-collection-container">
                     <p>Oops. It looks like your frame model does not exist in our catalog. Although we don’t offer DIY lens installation for this scenario, we can professionally install it for you for a $20 surcharge. <span><button>How it works</button></span></p>
-                    <button class="to-custom-lenses">Yes. Id like to have my lens installed for me </button>
+                    <button class="to-custom-lenses">Yes. Id like to have my lens installed for me</button>
                     <button @click="clearFilters()" class="clear-filters">Clear Filters</button>
                 </div>
               {%- else -%}
@@ -42,6 +42,7 @@
                       <li class="grid__item">
                         <a class="product-card" href="{{product.url}}">
                             <img
+                                loading = "lazy"
                                 src="{{ product.featured_image | image_url: width: 200 }}"
                                 width="200"
                                 height="200"
@@ -63,6 +64,7 @@
 </div>
 
 {% render 'object-collection' %}
+{{ 'sunglasses.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'sunglasses-searchable-dropdown.js' | asset_url }}"></script>
 <script src="{{ 'sunglasses-filter-modal.js' | asset_url }}"></script>
 <script src="{{ 'sunglasses-collection.js' | asset_url }}"></script>

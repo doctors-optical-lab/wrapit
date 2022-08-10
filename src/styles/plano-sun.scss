@@ -1,9 +1,0 @@
-@use "./abstracts/index" as *;
-
-#plano-sun-replacement{
-    background-color:$color-main;
-
-    h1{
-        font-size: $font-size *3;
-    }
-}
