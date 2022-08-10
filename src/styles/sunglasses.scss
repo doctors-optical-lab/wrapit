@@ -38,13 +38,15 @@
 
             .filters-main{
                 @include flex;
-                
+
                 .dropdown{
                     flex-grow: 1;
     
-                    .drop-down-input{
+                    .dropdown-input{
                         font-size: 1.5rem;
                         padding: 1.5rem;
+                        background: $color-gray4;
+                        border: 1px solid $color-gray1;
                     }
                 }
             }
