@@ -12,13 +12,16 @@ const SearchableDropDown = {
     delimiters: ["$%","%$"],
     template: `
     <div :id="id" @click.stop="" class="dropdown" v-if="options">
-
-        <input class="dropdown-input"
-        @focus="showOptions()"
-        @keyup="monitorEnterKey"
-        v-model="data.searchFilter"
-        :placeholder="placeholder" />
-
+        <div class="dropdown-input-container">
+            <input class="dropdown-input"
+            @focus="showOptions()"
+            @keyup="monitorEnterKey"
+            v-model="data.searchFilter"
+            :placeholder="placeholder" />
+            <div class="arrow-container">
+                <i class="fa-solid fa-angle-down"></i>
+            </div>
+        </div>
         <div class="dropdown-content"
         v-show="data.optionsShown">
             <div

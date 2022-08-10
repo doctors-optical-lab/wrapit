@@ -29,7 +29,7 @@
                 @selected="selectFrame($event)"
                 placeholder="Search frame model">
             </dropdown>
-            <button class="filter-button" @click="filterModal = true">Filters</button>
+            <button class="filter-button" @click="filterModal = true"><span class="pre-text">Can’t find your frame?</span><span class="main-text"><i class="fa-solid fa-filter"></i> Filter Frames</span></button>
           </div>
           <filters
               :active="filterModal"
@@ -38,31 +38,31 @@
               @close="filterModal = false">
           </filters>
 
-          <div class="active-filters">
+          <div v-if="activeFilters.material && activeFilters.shape" class="active-filters">
+              <p class="active-filters-label">Active Filters: </p>
               <button  
-                  v-if="activeFilters.material && activeFilters.shape"
                   class="remove-filters"
                   @click="clearFilters()"
-              >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
+              >$%activeFilters.material%$ + $%activeFilters.shape%$ <i class="fa-solid fa-xmark"></i></button>
           </div>
         </div>
       </div>
     </div>
     <div class="body">
-
+      <div class="page-width">
         <div class="product-grid-container">
             {%- paginate collection.products by section.settings.products_per_page -%}
               {%- if collection.products.size == 0 -%}
                 <div class="empty-collection-container">
-                    <p>Oops. It looks like your frame model does not exist in our catalog. Although we don’t offer DIY lens installation for this scenario, we can professionally install it for you for a $20 surcharge. <span><button>How it works</button></span></p>
-                    <button class="to-custom-lenses">Yes. Id like to have my lens installed for me</button>
+                    <p class="text-content">Oops. It looks like your frame model does not exist in our catalog. Although we don’t offer DIY lens installation for this scenario, we can professionally install it for you for a $20 surcharge. <span><button>How it works</button></span></p>
+                    <button class="button-1 to-custom-lenses">Yes. Id like to have my lens installed for me</button>
                     <button @click="clearFilters()" class="clear-filters">Clear Filters</button>
                 </div>
               {%- else -%}
                 <div class="collection">
                   <ul class="product-grid">
                     {%- for product in collection.products -%}
-                      <li class="grid__item">
+                      <li class="grid-item">
                         <a class="product-card" href="{{product.url}}">
                             <img
                                 loading = "lazy"
@@ -70,7 +70,7 @@
                                 width="200"
                                 height="200"
                             >
-                            <p>{{ product.title }}</p>
+                            <p class="product-title">{{ product.title }}</p>
                         </a>
                       </li>
                     {%- endfor -%}
@@ -82,7 +82,8 @@
                 </div>
               {%- endif -%}
             {%- endpaginate -%}
-          </div>
+        </div>
+      </div>
     </div>
 </div>
 
