@@ -8,7 +8,31 @@
         }
 
         .inner{
-            padding: 2rem;
+            padding: 2rem 0;
+            @include flex($direction:column, $gap: 1rem);
+
+            *{
+                max-width: 800px;
+            }
+            .usp{
+                @include flex($gap: 2rem);
+                li{
+
+                }
+            }
+            
+            .description *{
+                font-size: 1.2rem;
+            }
+
+            .tutorials{
+                @include grid-equal(2);
+                max-width: 500px;
+                
+                .tutorial *{
+                    font-size: 1.2rem;
+                }
+            }
         }
     }
 }
