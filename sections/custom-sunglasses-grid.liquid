@@ -1,43 +1,52 @@
 <div id="sunglasses-grid">
     <div class="banner">
       <div class="page-width">
-        <h1>{{ collection.title }}</h1>
-        <ul class="usp-list">
-          <li class="usp"><i class="fa-solid fa-thumbs-up"></i> Easy to Install</li>
-          <li class="usp"><i class="fa-solid fa-calendar-check"></i> 60 Days Free Return</li>
-        </ul>
-        <p class="description">{{ collection.description }}</p>
-        <ul class="tutorials">
-          <li class="tutorial"><a>How to install lenses myself <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li class="tutorial"><a>How professional installment works <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li class="tutorial"><a>How to identify my frame <i class="fa-solid fa-chevron-right"></i></a></li>
-          <li class="tutorial"><a>I can’t find my frame <i class="fa-solid fa-chevron-right"></i></a></li>
-        </ul>
+        <div class="inner">
+          <h1>{{ collection.title }}</h1>
+          <ul class="usp-list">
+            <li class="usp"><i class="fa-solid fa-thumbs-up"></i> Easy to Install</li>
+            <li class="usp"><i class="fa-solid fa-calendar-check"></i> 60 Days Free Return</li>
+          </ul>
+          <p class="description">{{ collection.description }}</p>
+          <ul class="tutorials">
+            <li class="tutorial"><a href='#'>How to install lenses myself <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li class="tutorial"><a href='#'>How professional installment works <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li class="tutorial"><a href='#'>How to identify my frame <i class="fa-solid fa-chevron-right"></i></a></li>
+            <li class="tutorial"><a href='#'>I can’t find my frame <i class="fa-solid fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
       </div>
     </div>
+
     <div class="filters">
-        <dropdown
-            id="model-search"
-            :options="collection.filters['Catalog Title'].values"
-            @selected="selectFrame($event)"
-            placeholder="Search frame model">
-        </dropdown>
+      <div class="page-width">
+        <div class="inner">
+          <h3>Find your frame</h3>
+          <div class="filters-main">
+            <dropdown
+                id="model-search"
+                :options="collection.filters['Catalog Title'].values"
+                @selected="selectFrame($event)"
+                placeholder="Search frame model">
+            </dropdown>
+            <button class="filter-button" @click="filterModal = true">Filters</button>
+          </div>
+          <filters
+              :active="filterModal"
+              :filters="collection.filters"
+              @filter="activeFilters.material = $event.material; activeFilters.shape = $event.shape"
+              @close="filterModal = false">
+          </filters>
 
-        <button class="filter-button" @click="filterModal = true">Filters</button>
-        <filters
-            :active="filterModal"
-            :filters="collection.filters"
-            @filter="activeFilters.material = $event.material; activeFilters.shape = $event.shape"
-            @close="filterModal = false">
-        </filters>
-
-        <div class="active-filters">
-            <button  
-                v-if="activeFilters.material && activeFilters.shape"
-                class="remove-filters"
-                @click="clearFilters()"
-            >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
+          <div class="active-filters">
+              <button  
+                  v-if="activeFilters.material && activeFilters.shape"
+                  class="remove-filters"
+                  @click="clearFilters()"
+              >$%activeFilters.material%$ + $%activeFilters.shape%$</button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="body">
 
