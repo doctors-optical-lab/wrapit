@@ -1,5 +1,10 @@
 @use "./abstracts/index" as *;
 
 #sunglasses-grid{
-    
+    .banner{
+        background-color: $color-gray0;
+        *{
+            color: white;
+        }
+    }
 }
