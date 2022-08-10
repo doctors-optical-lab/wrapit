@@ -1,6 +1,12 @@
-{% comment %} STILL NEEDS TO WORK ON PAGINATION {% endcomment %}
-
 <div id="sunglasses-grid">
+    <div class="banner">
+      <h1>{{ collection.title }}</h1>
+      <ul class="usp">
+        <li><i class="fa-solid fa-thumbs-up"></i> Easy to Install</li>
+        <li><i class="fa-solid fa-calendar-check"></i> 60 Days Free Return</li>
+      </ul>
+      <p>{{ collection.description }}</p>
+    </div>
     <div class="filters">
         <dropdown
             id="model-search"
