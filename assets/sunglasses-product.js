@@ -3,5 +3,9 @@ const SunglassesProductComponent = {
     delimiters: ["$%","%$"],
     setup(){
         const product = reactive(productObject)
+
+        return {
+            product
+        }
     }
 }

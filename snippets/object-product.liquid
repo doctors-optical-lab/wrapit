@@ -26,9 +26,6 @@
         {% for variant in product.variants %}
         {
             "id": "{{variant.id}}",
-            "option1": "{{variant.option1}}",
-            "option2": "{{variant.option2}}",
-            "option3": "{{variant.option3}}",
             "barcode": "{{variant.barcode}}",
             "inventory": "{{variant.inventory_quantity}}",
             "available": {{ variant.available }},
