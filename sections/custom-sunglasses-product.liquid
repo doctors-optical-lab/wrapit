@@ -1,3 +1,12 @@
-<div class="product-sunglasses">
-    {% render 'object-product'%}
+<div id="product-sunglasses">
 </div>
+
+{% render 'object-product' %}
+{{ 'product-sunglasses.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'sunglasses-product.js' | asset_url }}"></script>
+
+<script>
+    const SunglassesProductApp = createApp(SunglassesProductComponent);
+    SunglassesProductApp.mount('#product-sunglasses')
+</script>

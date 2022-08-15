@@ -1,51 +1,50 @@
 <script>
-    const productObject = 
-        {
-            "title": "{{product.title}}",
-            "tags": [
-            {% for tag in product.tags %}
-                "{{ tag }}"{% if forloop.last == true%}{% else %}, {%endif%}
+    const productObject = {
+        "title": "{{product.title}}",
+        "tags": [
+        {% for tag in product.tags %}
+            "{{ tag }}"{% if forloop.last == true%}{% else %}, {%endif%}
+        {% endfor %}
+        ],
+        "type": "{{ product.type }}",
+        "vendor": "{{ product.vendor }}",
+        "id": {{ product.id }},
+        "price": "{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}",
+        "compare_at_price": "{{ product.compare_at_price | money_without_trailing_zeros }}",
+        "description": "{{ product.description }}",
+        "options": {
+            {% for option in product.options_with_values %}
+                "{{ option.name }}": [
+                    {% for value in option.values %}
+                        "{{ value }}"{% if forloop.last == true %}{% else %},{% endif %}
+                    {% endfor %}
+                ]{% if forloop.last == true %}{% else %}, {% endif %}
             {% endfor %}
-            ],
-            "type": "{{ product.type }}",
-            "vendor": "{{ product.vendor }}",
-            "id": {{ product.id }},
-            "price": "{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}",
-            "compare_at_price": "{{ product.compare_at_price | money_without_trailing_zeros }}",
-            "description": "{{ product.description }}",
-            "options": {
-                {% for option in product.options_with_values %}
-                    "{{ option.name }}": [
-                        {% for value in option.values %}
-                            "{{ value }}"{% if forloop.last == true %}{% else %},{% endif %}
-                        {% endfor %}
-                    ]{% if forloop.last == true %}{% else %}, {% endif %}
-                {% endfor %}
-            },
-            "selected_variant": "{{ product.selected_or_first_available_variant.id }}",
-            "variants":[
-            {% for variant in product.variants %}
-            {
-                "id": "{{variant.id}}",
-                "option1": "{{variant.option1}}",
-                "option2": "{{variant.option2}}",
-                "option3": "{{variant.option3}}",
-                "barcode": "{{variant.barcode}}",
-                "inventory": "{{variant.inventory_quantity}}",
-                "available": {{ variant.available }},
-                "image": "{{ variant.image.src | image_url: width: 1500 }}",
-                "sku": "{{ variant.sku }}",
-                "price": "{{ variant.price | money_without_trailing_zeros}}",
-                "compare_at_price": "{{ variant.compare_at_price | money_without_trailing_zeros}}",
-                "options": [{% for option in variant.options %}"{{ option }}"{% if forloop.last == true %}{% else %},{% endif %}{% endfor %}],
-                "metafields": {
-                    "Human Image": "{{ variant.metafields.custom.human_image }}",
-                    "Frame Image": "{{ variant.metafields.custom.frame_image }}",
-                    "Orb Image": "{{ variant.metafields.custom.orb_image }}",
-                    "Mirror Color Type": "{{ variant.metafields.custom.mirror_color_type }}"
-                }
-            }{% if forloop.last == true%}{% else %}, {%endif%}
-            {% endfor%}
-            ]
-        }
+        },
+        "selected_variant": "{{ product.selected_or_first_available_variant.id }}",
+        "variants":[
+        {% for variant in product.variants %}
+        {
+            "id": "{{variant.id}}",
+            "option1": "{{variant.option1}}",
+            "option2": "{{variant.option2}}",
+            "option3": "{{variant.option3}}",
+            "barcode": "{{variant.barcode}}",
+            "inventory": "{{variant.inventory_quantity}}",
+            "available": {{ variant.available }},
+            "image": "{{ variant.image.src | image_url: width: 1500 }}",
+            "sku": "{{ variant.sku }}",
+            "price": "{{ variant.price | money_without_trailing_zeros}}",
+            "compare_at_price": "{{ variant.compare_at_price | money_without_trailing_zeros}}",
+            "options": [{% for option in variant.options %}"{{ option }}"{% if forloop.last == true %}{% else %},{% endif %}{% endfor %}],
+            "metafields": {
+                "Human Image": "{{ variant.metafields.custom.human_image }}",
+                "Frame Image": "{{ variant.metafields.custom.frame_image }}",
+                "Orb Image": "{{ variant.metafields.custom.orb_image }}",
+                "Mirror Color Type": "{{ variant.metafields.custom.mirror_color_type }}"
+            }
+        }{% if forloop.last == true%}{% else %}, {%endif%}
+        {% endfor%}
+        ]
+    }
 </script>
