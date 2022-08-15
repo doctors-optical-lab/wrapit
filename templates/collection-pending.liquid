@@ -1,0 +1,201 @@
+
+<script>
+    function copyToClipBoard(input){
+        let element = document.querySelector('#'+input);
+        console.log(element);
+        element.select();
+        navigator.clipboard.writeText(element.value);
+    };
+
+    function copyTable(element){
+        var body = document.body, range, sel;
+        let el = document.querySelector(element)
+        if (document.createRange && window.getSelection) {
+            range = document.createRange();
+            sel = window.getSelection();
+            sel.removeAllRanges();
+            try {
+                range.selectNodeContents(el);
+                sel.addRange(range);
+            } catch (e) {
+                range.selectNode(el);
+                sel.addRange(range);
+            }
+        } else if (body.createTextRange) {
+            range = body.createTextRange();
+            range.moveToElementText(el);
+            range.select();
+        }
+        document.execCommand('copy')
+    }
+</script>
+
+<div id="pending-products">
+    {% assign sorted_products = collection.products | sort: "title" %}
+    
+        <div class="all">
+            <div id="all-table">
+                <table>
+                    {% for product in sorted_products %}
+                    {% assign images = product.media | where: "media_type", "image" %}
+                        {% for image in images %}
+                            <tr>
+                                <td>https://{{ image.src | img_url: 'master' | replace: '//', '' }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="individual">
+            {% for product in sorted_products %}
+                <div class="pending-product">
+                    <div class="head">
+                        <h1>{{ product.title }}</h1>
+                    </div>
+                    <div class="inner">
+                        <div class="media-table">
+                            <h2>Media <span><button onclick="copyTable('#src-table-{{product.handle}}')">COPY</button></span></h2>
+                            <table id="images-table">
+                                {% assign images = product.media | where: "media_type", "image" %}
+                                {% for image in images %}
+                                    <tr>
+                                        <td><img src="{{ image | img_url: 'small' }}"></td>
+                                        <td><span><button onclick="copyToClipBoard('id-{{ product.handle }}-{{ forloop.index }}')">Copy Image Link</button></span></td>
+                                        <td style="width:0px"><input id="id-{{ product.handle }}-{{ forloop.index }}" value="https://{{ image.src | img_url: 'master' | replace: '//', '' }}"></td>
+                                        <td>{{ image.src | img_url: 'master' | replace: '//', '' | slice: 40, 100}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            <table id="src-table-{{product.handle}}" style="position:absolute;opacity:0;z-index:-1">
+                                {% assign images = product.media | where: "media_type", "image" %}
+                                {% for image in images %}<tr><td>https://{{ image.src | img_url: 'master' | replace: '//', ''}}</td></tr>{% endfor %}
+                            </table>
+                        </div>
+                        <div class="variants">
+
+                        <h2>Variants <span><button onclick="copyTable('#variant-table-{{product.handle}}')">COPY</button></span></h2>
+                        <table id="variants-table">
+                            <tbody>
+                                <tr class="variant-row">
+                                    <th></th>
+                                    <th>barcode</th>
+                                    <th>product gid</th>
+                                    <th></th>
+                                    <th>variant gid</th>
+                                    <th>sku</th>
+                                </tr>
+                            {% for variant in product.variants %}
+                                <tr class="variant-row">
+                                    <td class="image-container"><img src="{{ variant.featured_image | img_url: 'master' }}"></td>
+                                    <td>{{ variant.barcode }}</td>
+                                    <td>{{product.id}}</td>
+                                    <td><span><button onclick="copyToClipBoard('id-{{ variant.id }}')">Copy Variant ID</button></span></td>
+                                    <td><input type="text" id="id-{{ variant.id }}" value="{{ variant.id }}">{{ variant.id }}</td>
+                                    <td>{{ variant.sku }}</td>
+                                </tr>
+                            {% endfor %}
+                            <tbody>
+                        </table>
+                        <table id="variant-table-{{product.handle}}" style="position:absolute;opacity:0;z-index:-1">
+                            <tbody>
+                                <tr class="variant-row">
+                                    <th>barcode</th>
+                                    <th>product gid</th>
+                                    <th>variant gid</th>
+                                    <th>sku</th>
+                                </tr>
+                            {% for variant in product.variants %}
+                                <tr class="variant-row">
+                                    <td>{{ variant.barcode }}</td>
+                                    <td>{{product.id}}</td>
+                                    <td><input type="text" id="id-{{ variant.id }}" value="{{ variant.id }}">{{ variant.id }}</td>
+                                    <td>{{ variant.sku }}</td>
+                                </tr>
+                            {% endfor %}
+                            <tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+    </div>
+    
+    <style>
+        .variant-row{
+            display: grid !important;
+            grid-template-columns:repeat(6,1fr);
+            grid-gap: 1em;
+        }
+        td,th{
+            padding:0 !important;
+            border: none !important;
+        }
+        img{
+            height: 50px;
+            width: 100px;
+            object-fit:contain;
+        }
+        #pending-products{
+            margin: 4rem;
+            font-size: 0.8em;
+        }
+
+        #pending-products button:active{
+            border: 2px solid #ff0000;
+        }
+        .all{
+            margin-bottom: 2em;
+        }
+        .head{
+            display: flex;
+        }
+        .copy-all{
+            padding: 1em 2em;
+            background: #333333;
+            color: white;
+        }
+        .pending-product .inner > div{
+            display: flex;
+            flex-direction: column;
+        }
+        .pending-product tr{
+            list-style-type: none;
+            display: flex;
+            height: 3em;
+        }
+    
+        #images-table tr{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .pending-product .head{
+            margin-bottom: 1em;
+        }
+         .pending-product button{
+            border: 1px solid black;
+            padding: 0.5em 1em;
+            margin-right: 1em;
+            margin-left: 0.5em;
+        }
+    
+         .pending-product input{
+             width: 1px;
+             opacity: 0;
+        }
+    
+        .pending-product img{
+            max-height: 3em;
+        }
+        .pending-product .inner{
+            display: flex;
+        }
+        #all-table{
+            height: 1px;
+            overflow: hidden;
+        }
+    </style>
+    
+    
