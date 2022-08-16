@@ -1,4 +1,19 @@
 <div id="product-sunglasses">
+    <section class="main-section">
+        <div class="images-container"></div>
+        <div class="order-container">
+            <h1 class="title">{{ product.title }}</h1>
+            <h2 class="price">{{ product.price }}</h2>
+            <div class="lens-color-container">
+                <h3>Select Lens Color:</h3>
+                <ul>
+                    <li v-for="(colorValues, colorName) in colors">$%colorName%$</li>
+                </ul>
+            </div>
+            <div class="lens-type-container"></div>
+            <div class="installation-type-container"></div>
+        </div>
+    </section>
 </div>
 
 {% render 'object-product' %}

@@ -24,12 +24,26 @@ const SunglassesProductComponent = {
 
         //GET the CURRENT ACTIVE VARIANT
         const activeOptions = reactive({
-            'Option 1': product.variants[0].options[0],
-            'Option 2': product.variants[0].options[1],
-            'Option 3': product.variants[0].options[2]
+            'Option1': product.variants[0].options[0],
+            'Option2': product.variants[0].options[1],
+            'Option3': product.variants[0].options[2]
+        })
+
+        //CHANGE PAGE URL BASED ON ACTIVE OPTION SELECTIONS
+        watch(activeOptions, (values) => {
+            let activeVariant = product.variants.find(variant => {
+                variant.options[0] = activeOptions['Option1'],
+                variant.options[1] = activeOptions['Option2'],
+                variant.options[2] = activeOptions['Option3']
+            })
+
+            window.location.href = `?variant=${activeVariant.id}`
         })
         return {
-            product, colors
+            product, colors, activeOptions
         }
     }
 }
+
+//render options  and images on the page. on selection click, change activeOptions
+// check if activeOptions watcher works, meaning page url changes depending on the selected variant
