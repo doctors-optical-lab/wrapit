@@ -9,6 +9,7 @@ const SunglassesProductComponent = {
                 const sampleVariant = product.variants.find(variant => variant.options.includes(color));
                 if(color in output) return;
                 output[color] = {
+                    "Lens Image": sampleVariant.image,
                     "Frame Image": sampleVariant.metafields['Frame Image'],
                     "Human Image": sampleVariant.metafields['Human Image'],
                     "Mirror Color Type": sampleVariant.metafields['Mirror Color Type'],
@@ -52,8 +53,32 @@ const SunglassesProductComponent = {
             window.location.href = `?variant=${activeVariant.id}`
         })
 
+        //ADD TO CART
+        function addToCart(){
+            let data = {
+                'items': [
+                    {
+                     'id': Number(selectedVariant.id),
+                     'quantity': 1
+                    }
+                ]
+            }
+            fetch(`${window.Shopify.routes.root}cart/add.js`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                body: JSON.stringify(data)
+            }).then(response => {
+                console.log(JSON.stringify(data), response);
+
+            }).catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+
         return {
-            product, colors, activeOptions
+            product, colors, activeOptions, addToCart
         }
     }
 }

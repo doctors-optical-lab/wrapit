@@ -1,17 +1,45 @@
 <div id="product-sunglasses">
     <section class="main-section">
-        <div class="images-container"></div>
+        <div class="images-container">
+            <div class="preview-images">
+                <img loading="lazy" class="lens-image" :src="colors[activeOptions['Option1']]['Lens Image']">
+                <img loading="lazy" class="human-image" :src="colors[activeOptions['Option1']]['Human Image']">
+                <img loading="lazy" class="frame-image" :src="colors[activeOptions['Option1']]['Frame Image']">
+            </div>
+        </div>
         <div class="order-container">
             <h1 class="title">{{ product.title }}</h1>
             <h2 class="price">{{ product.price }}</h2>
-            <div class="lens-color-container">
+            <div class="selection-container lens-color-container">
                 <h3>Select Lens Color:</h3>
                 <ul>
-                    <li v-for="(colorValues, colorName) in colors">$%colorName%$</li>
+                    <li v-for="(colorValues, colorName) in colors"
+                        :class="{'active': activeOptions['Option1'] == colorName}">
+                        <button @click="activeOptions['Option1'] = colorName">$%colorName%$</button>
+                    </li>
                 </ul>
             </div>
-            <div class="lens-type-container"></div>
-            <div class="installation-type-container"></div>
+            <div class="selection-container lens-type-container">
+                <h3>Select Lens Type:</h3>
+                <ul>
+                    <li v-for="lensType in product.options['Lens Type']"
+                        :class="{'active': activeOptions['Option2'] == lensType}">
+                        <button @click="activeOptions['Option2'] = lensType">$%lensType%$</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="selection-container installation-type-container">
+                <h3>Select Lens Type:</h3>
+                <ul>
+                    <li v-for="installationType in product.options['Installation Type']"
+                        :class="{'active': activeOptions['Option3'] == installationType}">
+                        <button @click="activeOptions['Option3'] = installationType">$%installationType%$</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="cta-container">
+                <button class="add-to-cart" @click="addToCart()">Add to Cart</button>
+            </div>
         </div>
     </section>
 </div>
@@ -25,3 +53,11 @@
     const SunglassesProductApp = createApp(SunglassesProductComponent);
     SunglassesProductApp.mount('#product-sunglasses')
 </script>
+
+{% comment %} 
+TODO:
+- dynamic images on click 
+- separate mirrored
+- add to cart button
+- css
+{% endcomment %}
