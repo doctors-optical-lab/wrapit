@@ -1,70 +1,79 @@
 <div id="product-sunglasses">
-    <section class="main-section">
+    <section class="main-section page-width">
         <div class="images-container">
-            <img loading="lazy" class="active-image" :src="activeImage">
             <div class="preview-images">
-                <img 
-                    @click="activeImage = colors[activeOptions['Option1']]['Lens Image']" 
-                    loading="lazy" 
-                    :class="{'active': activeImage == colors[activeOptions['Option1']]['Lens Image']}" 
-                    :src="colors[activeOptions['Option1']]['Lens Image']">
                 <img 
                     @click="activeImage = colors[activeOptions['Option1']]['Human Image']" 
                     loading="lazy" 
                     :class="{'active': activeImage == colors[activeOptions['Option1']]['Human Image']}" 
                     :src="colors[activeOptions['Option1']]['Human Image']">
                 <img 
+                    @click="activeImage = colors[activeOptions['Option1']]['Lens Image']" 
+                    loading="lazy" 
+                    :class="{'active': activeImage == colors[activeOptions['Option1']]['Lens Image']}" 
+                    :src="colors[activeOptions['Option1']]['Lens Image']">
+                <img 
                     @click="activeImage = colors[activeOptions['Option1']]['Frame Image']" 
                     loading="lazy" 
                     :class="{'active': activeImage == colors[activeOptions['Option1']]['Frame Image']}" 
                     :src="colors[activeOptions['Option1']]['Frame Image']">
             </div>
+            <div class="active-image-container">
+                <img loading="lazy" class="active-image" :src="activeImage">
+            </div>
         </div>
         <div class="order-container">
+            <p class="brand">{{ product.vendor }}</p>
             <h1 class="title">{{ product.title }}</h1>
-            <h2 class="price">{{ product.price }}</h2>
-            <div class="selection-container lens-color-container">
-                <h3>Lens Color: <b>$%activeOptions['Option1']%$</b></h3>
-                <div class="basic">
-                    <h4>Basic Colors</h4>
+            <h2 class="price">${{ product.price }} / pair</h2>
+            <div class="selections">
+                <div class="selection-container lens-color-container">
+                    <h3>Lens Color: <span>$%activeOptions['Option1']%$</span></h3>
+                    <div class="color-group basic">
+                        <h4>Basic Colors</h4>
+                        <ul>
+                            <template v-for="(colorValues, colorName) in colors">
+                                <li v-if="colorValues['Mirror Color Type'] == 'Basic'"
+                                    :class="{'active': activeOptions['Option1'] == colorName}">
+                                    <button :class="colorName" @click="activeOptions['Option1'] = colorName">
+                                        <img loading="lazy" :src="colorValues['Orb Image']">
+                                    </button>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    <div class="color-group mirrored">
+                        <h4>Mirrored Colors <span>+$5</span></h4>
+                        <ul>
+                            <template v-for="(colorValues, colorName) in colors">
+                                <li v-if="colorValues['Mirror Color Type'] == 'Mirrored'"
+                                    :class="{'active': activeOptions['Option1'] == colorName}">
+                                    <button :class="colorName" @click="activeOptions['Option1'] = colorName">
+                                        <img loading="lazy" :src="colorValues['Orb Image']">
+                                    </button>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selection-container lens-type-container">
+                    <h3>Select Lens Type:</h3>
                     <ul>
-                        <template v-for="(colorValues, colorName) in colors">
-                            <li v-if="colorValues['Mirror Color Type'] == 'Basic'"
-                                :class="{'active': activeOptions['Option1'] == colorName}">
-                                <button @click="activeOptions['Option1'] = colorName">$%colorName%$</button>
-                            </li>
-                        </template>
+                        <li v-for="lensType in product.options['Lens Type']"
+                            :class="{'active': activeOptions['Option2'] == lensType}">
+                            <button @click="activeOptions['Option2'] = lensType">$%lensType%$</button>
+                        </li>
                     </ul>
                 </div>
-                <div class="mirrored">
-                    <h4>Mirrored Colors <b>+$5</b></h4>
+                <div class="selection-container installation-type-container">
+                    <h3>Select Lens Type:</h3>
                     <ul>
-                        <template v-for="(colorValues, colorName) in colors">
-                            <li v-if="colorValues['Mirror Color Type'] == 'Mirrored'"
-                                :class="{'active': activeOptions['Option1'] == colorName}">
-                                <button @click="activeOptions['Option1'] = colorName">$%colorName%$</button>
-                            </li>
-                        </template>
+                        <li v-for="installationType in product.options['Installation Type']"
+                            :class="{'active': activeOptions['Option3'] == installationType}">
+                            <button @click="activeOptions['Option3'] = installationType">$%installationType%$</button>
+                        </li>
                     </ul>
                 </div>
-            </div>
-            <div class="selection-container lens-type-container">
-                <h3>Select Lens Type:</h3>
-                <ul>
-                    <li v-for="lensType in product.options['Lens Type']"
-                        :class="{'active': activeOptions['Option2'] == lensType}">
-                        <button @click="activeOptions['Option2'] = lensType">$%lensType%$</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="selection-container installation-type-container">
-                <h3>Select Lens Type:</h3>
-                <ul>
-                    <li v-for="installationType in product.options['Installation Type']"
-                        :class="{'active': activeOptions['Option3'] == installationType}">
-                        <button @click="activeOptions['Option3'] = installationType">$%installationType%$</button>
-                    </li>
-                </ul>
             </div>
             <div class="cta-container">
                 <button class="add-to-cart" @click="addToCart()">Add to Cart</button>
@@ -85,5 +94,6 @@
 
 {% comment %} 
 - css
+- what if some lens type options are not available for the selected color?
 - on add to cart failure, create an error catcher UX
 {% endcomment %}

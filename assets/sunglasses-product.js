@@ -44,7 +44,7 @@ const SunglassesProductComponent = {
         })
 
         //ACTIVE IMAGE
-        const activeImage = ref(selectedVariant.image);
+        const activeImage = ref(selectedVariant.metafields['Human Image']);
 
         //CHANGE PAGE URL BASED ON ACTIVE OPTION SELECTIONS
         watch(activeOptions, (values) => {
