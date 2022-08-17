@@ -23,13 +23,13 @@ const SunglassesProductComponent = {
             //     'Black':{
             //         'Frame Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-side-angle-ray-ban-wayfarer-ease-rb4340-50mm_767x_fb914b20-fe54-41e9-b520-dfdc4e34a2b5.webp?v=1660524516",
             //         'Human Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-lifestyle-gray-green-1_767x_6f02b5b2-d30d-4201-8f8b-8b6a335d0354.webp?v=1660524517",
-            //         'Mirror Color Type':"Non-Mirrored",
+            //         'Mirror Color Type':"Basic",
             //         'Orb Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-color-swatch-stealth-black-order-01_cc910741-0905-4185-ad8d-6c6cf812b985.webp?v=1660524514"
             //     },
             //     'Brown':{
             //         'Frame Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-side-angle-ray-ban-wayfarer-ease-rb4340-50mm_767x_fb914b20-fe54-41e9-b520-dfdc4e34a2b5.webp?v=1660524516",
             //         'Human Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-lifestyle-dark-brown-1_767x_286d12dd-6de4-42c1-b2b3-4624bb467ce6.webp?v=1660524518",
-            //         'Mirror Color Type':"Non-Mirrored",
+            //         'Mirror Color Type':"Mirrored",
             //         'Orb Image':"https://cdn.shopify.com/s/files/1/0561/6166/5091/products/revant-lens-color-swatch-stealth-black-order-01_cc910741-0905-4185-ad8d-6c6cf812b985.webp?v=1660524514"
             //     }
             // }
@@ -42,6 +42,9 @@ const SunglassesProductComponent = {
             'Option2': selectedVariant.options[1],
             'Option3': selectedVariant.options[2]
         })
+
+        //ACTIVE IMAGE
+        const activeImage = ref(selectedVariant.image);
 
         //CHANGE PAGE URL BASED ON ACTIVE OPTION SELECTIONS
         watch(activeOptions, (values) => {
@@ -70,15 +73,14 @@ const SunglassesProductComponent = {
                 }, 
                 body: JSON.stringify(data)
             }).then(response => {
-                console.log(JSON.stringify(data), response);
-
+                if(response.status == 200 && response.ok == true) window.location.href = '/cart'
             }).catch((error) => {
               console.error('Error:', error);
             });
         }
 
         return {
-            product, colors, activeOptions, addToCart
+            product, colors, activeOptions, activeImage, addToCart
         }
     }
 }

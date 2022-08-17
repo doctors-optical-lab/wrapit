@@ -8,6 +8,10 @@
                     height: 100px;
                     width: 100px;
                     object-fit: contain;
+
+                    &.active{
+                        outline: 3px solid $color-gray2;
+                    }
                 }
             }
         }
