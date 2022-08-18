@@ -23,9 +23,11 @@
             </div>
         </div>
         <div class="order-container">
-            <p class="brand">{{ product.vendor }}</p>
-            <h1 class="title">{{ product.title }}</h1>
-            <h2 class="price">${{ product.price }} / pair</h2>
+            <div class="head">
+                <p class="brand">{{ product.vendor }}</p>
+                <h1 class="title">{{ product.title }}</h1>
+                <h2 class="price">$%product.price%$ / pair</h2>
+            </div>
             <div class="selections">
                 <div class="selection-container lens-color-container">
                     <h3>Lens Color: <span>$%activeOptions['Option1']%$</span></h3>
@@ -57,11 +59,15 @@
                     </div>
                 </div>
                 <div class="selection-container lens-type-container">
-                    <h3>Select Lens Type:</h3>
+                    <h3>Select Installation Type:</h3>
                     <ul>
                         <li v-for="lensType in product.options['Lens Type']"
-                            :class="{'active': activeOptions['Option2'] == lensType}">
-                            <button @click="activeOptions['Option2'] = lensType">$%lensType%$</button>
+                            :class="[{'active': activeOptions['Option2'] == lensType}, lensType]">
+                            <button @click="activeOptions['Option2'] = lensType">
+                                <div class="content">
+                                    <h4>$%lensType%$</h4>
+                                </div>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -69,15 +75,27 @@
                     <h3>Select Lens Type:</h3>
                     <ul>
                         <li v-for="installationType in product.options['Installation Type']"
-                            :class="{'active': activeOptions['Option3'] == installationType}">
-                            <button @click="activeOptions['Option3'] = installationType">$%installationType%$</button>
+                            :class="[{'active': activeOptions['Option3'] == installationType}, installationType]">
+                            <button @click="activeOptions['Option3'] = installationType">
+                                <div class="content">
+                                    <h4>$%installationType%$</h4>
+                                </div>
+                            </button>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="cta-container">
-                <button class="add-to-cart" @click="addToCart()">Add to Cart</button>
+                <button class="add-to-cart" @click="addToCart()">
+                    <span class="label">Add to Cart</span>
+                    <span class="subtotal">$%product.price%$ / pair</span>
+                </button>
             </div>
+
+            <ul class="usp-list">
+                <li class="usp"><i class="fa-solid fa-thumbs-up"></i> Easy to Install</li>
+                <li class="usp"><i class="fa-solid fa-calendar-check"></i> 60 Days Free Return</li>
+            </ul>
         </div>
     </section>
 </div>
@@ -93,7 +111,6 @@
 </script>
 
 {% comment %} 
-- css
 - what if some lens type options are not available for the selected color?
 - on add to cart failure, create an error catcher UX
 {% endcomment %}
