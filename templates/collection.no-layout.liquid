@@ -1,8 +1,8 @@
 {% layout none %}
 {
-    "title": "{{ page.title }}",
-    "handle": "{{ page.handle }}",
-    "url": "{{ page.url}}",
+    "title": "{{ collection.title }}",
+    "handle": "{{ collection.handle }}",
+    "url": "{{ collection.url}}",
     "products":[
         {% for product in collection.products %}
         {
