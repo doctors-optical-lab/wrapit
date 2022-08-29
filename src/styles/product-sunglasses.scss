@@ -145,6 +145,23 @@
                                 &.active{
                                     outline: 3px solid $color-gray1;
                                 }
+
+                                &.inactive{
+                                    position :relative;
+                                    pointer-events: none;
+                                    
+                                    &:after{
+                                        @include flex($align:center, $justify:center);
+                                        content: 'Not available for this color';
+                                        font-style: italic;
+                                        position: absolute;
+                                        height: 100%;
+                                        width: 100%;
+                                        left:0;
+                                        top:0;
+                                        background-color: rgba(255,255,255, 0.9);
+                                    }
+                                }
                                 &.Basic{
                                     button{
                                         &::before{

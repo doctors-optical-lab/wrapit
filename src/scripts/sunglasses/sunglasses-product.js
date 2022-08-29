@@ -6,18 +6,31 @@ const SunglassesProductComponent = {
         const colors = computed(() => {
             let output = {};
             product.options['Lens Color'].forEach(color => {
-                const sampleVariant = product.variants.find(variant => variant.options.includes(color));
+                const colorVariants = product.variants.filter(variant => variant.options.includes(color));
+                const sampleVariant = colorVariants[0];
+                
                 if(color in output) return;
                 output[color] = {
                     "Lens Image": sampleVariant.image,
                     "Frame Image": sampleVariant.metafields['Frame Image'],
                     "Human Image": sampleVariant.metafields['Human Image'],
                     "Mirror Color Type": sampleVariant.metafields['Mirror Color Type'],
-                    "Orb Image": sampleVariant.metafields['Orb Image']
+                    "Orb Image": sampleVariant.metafields['Orb Image'],
+                    "Available Option2": filterUnique(colorVariants.map(variant => variant.options[1])),
+                    "Available Option3": filterUnique(colorVariants.map(variant => variant.options[2]))
                 }
             })
 
             return output
+
+            function filterUnique(array){
+                let output = []
+
+                for(item of array){
+                    if(!output.includes(item)) output.push(item)
+                }
+                return output;
+            }
             // Sample output
             // 'colors':{
             //     'Black':{
@@ -37,21 +50,26 @@ const SunglassesProductComponent = {
 
         //GET the CURRENT ACTIVE VARIANT
         const selectedVariant = product.variants.find(variant => variant.id == product.selected_variant);
-        const activeOptions = reactive({
-            'Option1': selectedVariant.options[0],
-            'Option2': selectedVariant.options[1],
-            'Option3': selectedVariant.options[2]
-        })
+        const activeOptions = reactive([
+            selectedVariant.options[0],
+            selectedVariant.options[1],
+            selectedVariant.options[2]
+        ])
 
         //ACTIVE IMAGE
         const activeImage = ref(selectedVariant.metafields['Human Image']);
 
         //CHANGE PAGE URL BASED ON ACTIVE OPTION SELECTIONS
-        watch(activeOptions, (values) => {
+        watch(activeOptions, (newOptions, oldOptions) => {
             let activeVariant = product.variants.find(variant => 
-                variant.options[0] == values['Option1'] &&
-                variant.options[1] == values['Option2'] &&
-                variant.options[2] == values['Option3'])
+                variant.options[0] == newOptions[0] &&
+                variant.options[1] == newOptions[1] &&
+                variant.options[2] == newOptions[2])
+            
+            // edge case if option combination would be invalid. just pick the first variant of the selected color
+            if(!activeVariant){
+                activeVariant = product.variants.find(variant => variant.options[0] == newOptions[0])
+            }
 
             window.location.href = `?variant=${activeVariant.id}`
         })
