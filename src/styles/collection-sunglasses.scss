@@ -117,7 +117,7 @@
                 right: 0;
                 bottom: 0;
                 z-index: 4;
-                background-color: rgba(56, 56, 56, 0.8);
+                background-color: $popup-background;
                 @include flex($align:center, $justify:center);
 
                 .container{

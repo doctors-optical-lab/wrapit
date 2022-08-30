@@ -1,5 +1,18 @@
 <div id="expert-installation">
+    <div class="expert-installation-container">
+        <h2>Herllo</h2>
+    </div>
+    <div onclick="display('#expert-installation', false)" class="expert-installation-background">
+    </div>
 </div>
 
-
+{{ 'popup-expert-installation.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'sunglasses-expert-installation.js' | asset_url }}"></script>
+
+<script>
+    initialize();
+</script>
+
+{% comment %} 
+- on add to cart failure, create an error catcher UX
+{% endcomment %}

@@ -102,6 +102,3 @@ const SunglassesProductComponent = {
         }
     }
 }
-
-//render options  and images on the page. on selection click, change activeOptions
-// check if activeOptions watcher works, meaning page url changes depending on the selected variant
