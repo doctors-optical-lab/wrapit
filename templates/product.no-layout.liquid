@@ -1,0 +1,30 @@
+{% layout none %}
+{
+    "title": "{{product.title}}",
+    "id": "{{product.id}}",
+    "image": "{{ product | img_url }}",
+    "handle": "{{product.handle}}",
+    "price": "{{product.price}}",
+    "options": [
+    {% for option in product.options %}
+        "{{ option }}"{% if forloop.last == true%}{% else %}, {%endif%}
+    {% endfor %}
+    ],
+    "tags": [
+    {% for tag in product.tags %}
+        "{{ tag }}"{% if forloop.last == true%}{% else %}, {%endif%}
+    {% endfor %}
+    ],
+    "variants":[
+    {% for variant in product.variants %}
+    {
+        "id": "{{variant.id}}",
+        "options": [
+        "{{variant.option1}}", "{{variant.option2}}", "{{variant.option3}}"
+        ],
+        "barcode": "{{variant.barcode}}",
+        "inventory": "{{variant.inventory_quantity}}"
+    }{% if forloop.last == true%}{% else %}, {%endif%}
+    {% endfor%}
+    ]
+}
