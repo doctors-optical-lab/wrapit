@@ -70,7 +70,10 @@
                                 width="200"
                                 height="200"
                             >
-                            <p class="product-title">{{ product.title }}</p>
+                            <div class="product-label">
+                              <p class="product-title">{{ product.title }}</p>
+                              <p class="product-price">$%lensInformation["{{ product.metafields.custom.frame_wrap }}"]["price"]%$</p>
+                            </div>
                         </a>
                       </li>
                     {%- endfor -%}

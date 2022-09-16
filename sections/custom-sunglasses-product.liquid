@@ -1,43 +1,43 @@
 <div id="product-sunglasses">
     <section class="main-section page-width">
         <div class="images-container">
-            <div class="preview-images">
+            <div v-if="userStates.selectedOptions[0]" class="preview-images">
                 <img 
-                    @click="activeImage = colors[activeOptions[0]]['Human Image']" 
+                    @click="userStates.selectedImage = lensColors[userStates.selectedOptions[0]]['Human Image']" 
                     loading="lazy" 
-                    :class="{'active': activeImage == colors[activeOptions[0]]['Human Image']}" 
-                    :src="colors[activeOptions[0]]['Human Image']">
+                    :class="{'active': userStates.selectedImage == lensColors[userStates.selectedOptions[0]]['Human Image']}" 
+                    :src="lensColors[userStates.selectedOptions[0]]['Human Image']">
                 <img 
-                    @click="activeImage = colors[activeOptions[0]]['Lens Image']" 
+                    @click="userStates.selectedImage = lensColors[userStates.selectedOptions[0]]['Lens Image']" 
                     loading="lazy" 
-                    :class="{'active': activeImage == colors[activeOptions[0]]['Lens Image']}" 
-                    :src="colors[activeOptions[0]]['Lens Image']">
+                    :class="{'active': userStates.selectedImage == lensColors[userStates.selectedOptions[0]]['Lens Image']}" 
+                    :src="lensColors[userStates.selectedOptions[0]]['Lens Image']">
                 <img 
-                    @click="activeImage = colors[activeOptions[0]]['Frame Image']" 
+                    @click="userStates.selectedImage = lensColors[userStates.selectedOptions[0]]['Frame Image']" 
                     loading="lazy" 
-                    :class="{'active': activeImage == colors[activeOptions[0]]['Frame Image']}" 
-                    :src="colors[activeOptions[0]]['Frame Image']">
+                    :class="{'active': userStates.selectedImage == lensColors[userStates.selectedOptions[0]]['Frame Image']}" 
+                    :src="lensColors[userStates.selectedOptions[0]]['Frame Image']">
             </div>
             <div class="active-image-container">
-                <img loading="lazy" class="active-image" :src="activeImage">
+                <img loading="lazy" class="active-image" :src="userStates.selectedImage">
             </div>
-        </div>
-        <div class="order-container">
+        </div> 
+        <div class="order-container" v-if="lensProduct.options">
             <div class="head">
                 <p class="brand">{{ product.vendor }}</p>
                 <h1 class="title">{{ product.title }}</h1>
-                <h2 class="price">$%product.price%$ / pair</h2>
+                <h2 class="price">$%userStates.selectedVariant.price%$ / pair</h2>
             </div>
             <div class="selections">
                 <div class="selection-container lens-color-container">
-                    <h3>Lens Color: <span>$%activeOptions[0]%$</span></h3>
+                    <h3>Lens Color: <span>$%userStates.selectedOptions[0]%$</span></h3>
                     <div class="color-group basic">
                         <h4>Basic Colors</h4>
                         <ul>
-                            <template v-for="(colorValues, colorName) in colors">
+                            <template v-for="(colorValues, colorName) in lensColors">
                                 <li v-if="colorValues['Mirror Color Type'] == 'Basic'"
-                                    :class="{'active': activeOptions[0] == colorName}">
-                                    <button :class="colorName" @click="activeOptions[0] = colorName">
+                                    :class="{'active': userStates.selectedOptions[0] == colorName}">
+                                    <button :class="colorName" @click="userStates.selectedOptions[0] = colorName">
                                         <img loading="lazy" :src="colorValues['Orb Image']">
                                     </button>
                                 </li>
@@ -47,10 +47,10 @@
                     <div class="color-group mirrored">
                         <h4>Mirrored Colors <span>+$5</span></h4>
                         <ul>
-                            <template v-for="(colorValues, colorName) in colors">
+                            <template v-for="(colorValues, colorName) in lensColors">
                                 <li v-if="colorValues['Mirror Color Type'] == 'Mirrored'"
-                                    :class="{'active': activeOptions[0] == colorName}">
-                                    <button :class="colorName" @click="activeOptions[0] = colorName">
+                                    :class="{'active': userStates.selectedOptions[0] == colorName}">
+                                    <button :class="colorName" @click="userStates.selectedOptions[0] = colorName">
                                         <img loading="lazy" :src="colorValues['Orb Image']">
                                     </button>
                                 </li>
@@ -61,9 +61,9 @@
                 <div class="selection-container lens-type-container">
                     <h3>Select Installation Type:</h3>
                     <ul>
-                        <li v-for="lensType in product.options['Lens Type']"
-                            :class="[{'active': activeOptions[1] == lensType, 'inactive':!colors[activeOptions[0]]['Available Option2'].includes(lensType)}, lensType]">
-                            <button @click="activeOptions[1] = lensType">
+                        <li v-for="lensType in lensProduct.options['Lens Type']"
+                            :class="[{'active': userStates.selectedOptions[1] == lensType, 'inactive':!lensColors[userStates.selectedOptions[0]]['Available Option2'].includes(lensType)}, lensType]">
+                            <button @click="userStates.selectedOptions[1] = lensType">
                                 <div class="content">
                                     <h4>$%lensType%$</h4>
                                 </div>
@@ -74,9 +74,9 @@
                 <div class="selection-container installation-type-container">
                     <h3>Select Lens Type:</h3>
                     <ul>
-                        <li v-for="installationType in product.options['Installation Type']"
-                            :class="[{'active': activeOptions[2] == installationType}, installationType]">
-                            <button @click="activeOptions[2] = installationType">
+                        <li v-for="installationType in lensProduct.options['Installation Type']"
+                            :class="[{'active': userStates.selectedOptions[2] == installationType}, installationType]">
+                            <button @click="userStates.selectedOptions[2] = installationType">
                                 <div class="content">
                                     <h4>$%installationType%$</h4>
                                 </div>
@@ -88,7 +88,7 @@
             <div class="cta-container">
                 <button class="add-to-cart" @click="addToCart()">
                     <span class="label">Add to Cart</span>
-                    <span class="subtotal">$%product.price%$ / pair</span>
+                    <span class="subtotal">$%userStates.selectedVariant.price%$ / pair</span>
                 </button>
             </div>
 

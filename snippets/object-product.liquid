@@ -21,6 +21,12 @@
                 ]{% if forloop.last == true %}{% else %}, {% endif %}
             {% endfor %}
         },
+        "metafields": {
+            "Catalog Title": "{{ product.metafields.custom.catalog_title }}",
+            "Frame Wrap": "{{ product.metafields.custom.frame_wrap }}",
+            "Frame Shape": "{{ product.metafields.custom.frame_shape }}",
+            "Frame Material": "{{ product.metafields.custom.frame_material }}"
+        },
         "selected_variant": "{{ product.selected_or_first_available_variant.id }}",
         "variants":[
         {% for variant in product.variants %}
