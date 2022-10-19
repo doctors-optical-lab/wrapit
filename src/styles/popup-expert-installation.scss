@@ -17,7 +17,9 @@
         background-color: white;
         position: relative;
         z-index: 1;
-        width:600px;
+        width:550px;
+        max-height: 700px;
+        overflow-y: scroll;
     }
 
     .expert-installation-background{
@@ -33,10 +35,341 @@
     &.display{
         pointer-events:auto;
         visibility:visible;
+        z-index:4;
 
         .expert-installation-container{
             opacity: 1;
             transform: translateY(0px);
+
+            .head{
+                background-color: black;
+                padding: 3rem;
+                position: sticky;
+                top: 0;
+                z-index:1;
+
+                h2{
+                    color: white;
+                }
+                ul{
+                    @include flex($gap: 2rem);
+                    li{
+                        color: white;
+
+                        i{
+                            color: white;
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+                .close{
+                    background: none;
+                    position: absolute;
+                    right:0;
+                    top:0;
+                    margin: 2rem;
+                    cursor: pointer;
+
+                    i{
+                        font-size: 2rem;
+                        color: white;
+                    }
+                }
+            }
+
+            .body{
+                padding: 3rem;
+                background: $color-gray5;
+
+                .panel{
+                    @include flex($direction:column, $gap: 3rem);
+                    position: relative;
+
+                    .section-header{
+                        @include flex($gap: 1rem);
+                        
+                        i{
+                            font-size: 2rem;
+                            cursor: pointer;
+                        }
+
+                        h3{
+                            flex-grow: 1;
+                        }
+
+                        .tutorial-link{
+                            text-decoration: underline;
+                            color: $color-gray1;
+                            font-style: italic;
+                            background: none;
+                            cursor: pointer;
+                            text-align:right;
+                        }
+
+                    }
+
+                    @mixin bar-selection(){
+                        width: 100%;
+                        @include flex;
+                        cursor: pointer;
+
+                        &::before{
+                            content: '';
+                            width: 30%;
+                        }
+
+                        .content{
+                            @include flex($direction:column, $justify:center, $align:flex-start, $gap:0.5em);
+                            padding: 1.5em;
+
+                            h4{
+                                font-weight: 600;
+                            }
+                            &::after{
+                                color: $color-gray1;
+                                text-align: left;
+                            }
+
+                        }
+
+                        &:hover{
+                            background-color: $color-gray2;
+                        }
+
+                        &.active{
+                            outline: 2px solid $color-gray1;
+                        }
+                    }   
+
+                    &.wrap-type-container{
+                        .selections{
+                            @include flex($direction:column, $align:stretch, $gap: 1rem);
+
+                            button{
+                                @include bar-selection();
+                                padding: 3rem;
+
+                                &::before{
+                                    background: url('https://cdn.shopify.com/s/files/1/0561/6166/5091/files/sun-basic_1a8ae872-7920-4da9-a4b4-8fec4eaefc02.webp?v=1660856126') no-repeat;
+                                    background-size: contain;
+                                    background-position: center;
+                                }
+
+                                .content{
+                                    font-weight: 600;
+                                    &::after{
+                                        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing.';
+                                        font-weight: 400;
+                                    }
+                                }
+                            }
+                        }
+
+                        .cta{
+                            align-self: flex-end;
+                            @include flex($gap: 0.5rem);
+
+                            i{
+                                font-size: 1.5rem;
+                                color: white;
+                            }
+                        }
+                    }
+
+                    &.lens-selections-container{
+
+                        .color-selections{
+                            @include flex($direction: column, $gap: 1.5rem);
+    
+                            h3{
+                                font-weight: 400;
+                            }
+
+                            .color-group{
+                                @include flex($direction: column, $gap: 0.5rem);
+                                background-color: $color-gray4;
+                                padding: 1.5rem;
+    
+                                h4{
+                                    font-size: 1.2rem;
+                                    span{
+                                        font-weight: 700;
+                                        margin-left: 1rem;
+                                    }
+                                }
+                                ul{
+                                    @include flex($gap: 0.75rem);
+                                    li{
+                                        button{
+                                            height: 4rem;
+                                            width: 4rem;
+                                            border-radius: 4rem;
+                                            padding: 2px;
+                                            background: none;
+                                            cursor: pointer;
+    
+                                            img{
+                                                height: 100%;
+                                                width: 100%;
+                                            }
+                                        }
+    
+                                        &.active button{
+                                            outline: 2px solid $color-gray1;
+                                        }
+    
+                                        &:hover button{
+                                            outline: 2px solid $color-gray2;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .section-images{
+                            @include flex($gap:2rem);
+
+                            .featured-image-container{
+                                flex-grow: 1;
+
+                                .featured-image{
+                                    width: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+                            
+                            .image-selections{
+                                cursor: pointer;
+                                @include flex($direction: column, $gap: 1rem);
+
+                                button{
+                                    background: none;
+                                    cursor: pointer;
+                                    height: 100px;
+                                    width: 100px;
+
+                                    img{
+                                        object-fit: cover;
+                                        height: 100%;
+                                        width: 100%;
+                                    }
+
+                                    &:hover{
+                                        outline: 3px solid $color-gray3;
+                                    }
+                                    &.active{
+                                        outline: 3px solid $color-gray2;
+                                    }
+                                }
+                            }
+                        }
+
+                        .lens-type-selections{
+                            @include flex($direction:column, $gap: 1rem);
+
+                            .selections{
+                                @include grid-equal(3);
+                                height: 200px;
+                                gap: 2rem;
+
+                                button{
+                                    @include flex($direction:column, $gap: 1rem);
+                                    font-size: 1.25em;
+
+                                    &::before{
+                                        content: '';
+                                        flex-grow: 1;
+                                    }
+
+                                    &::after{
+                                        font-size: 1rem;
+                                        margin-bottom: 1rem;
+                                    }
+                                    
+                                    &.Basic{
+                                        &::before{
+                                            background: url('https://cdn.shopify.com/s/files/1/0561/6166/5091/files/maxresdefault.jpg?v=1660855546') no-repeat;
+                                            background-size: cover;
+                                            background-position: center;
+                                        }
+                                        
+                                        &::after{
+                                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing.'
+                                        }
+                                    }
+
+                                    &.Polarized{
+                                        &::before{
+                                            background: url('https://cdn.shopify.com/s/files/1/0561/6166/5091/files/Polarized-vs.-Non-Polarized-Sunglasses.jpg?v=1660855698') no-repeat;
+                                            background-size: cover;
+                                            background-position: center;
+                                        }
+
+                                        &::after{
+                                            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing.'
+                                        }
+                                    }
+                                    &.active{
+                                        outline: 3px solid $color-gray1;
+                                    }
+                                    &.inactive{
+                                        position :relative;
+                                        pointer-events: none;
+                                        
+                                        &::after{
+                                            @include flex($align:center, $justify:center);
+                                            content: 'Not available for this color';
+                                            font-style: italic;
+                                            position: absolute;
+                                            height: 100%;
+                                            width: 100%;
+                                            left:0;
+                                            top:0;
+                                            background-color: rgba(255,255,255, 0.95);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .section-footer{
+                            @include flex($justify:flex-end, $align:flex-end, $gap: 2rem);
+                            border-top: 1px solid $color-gray3;
+                            padding-top: 3rem;
+
+                            .subtotal-information{
+                                @include flex($direction:column, $gap: 1rem);
+
+                                .list-items{
+                                    li{
+                                        @include flex($justify:space-between, $gap: 2rem);
+                                        span{
+                                            font-size: 1rem;
+                                        }
+                                    }
+                                }
+                                .subtotal{
+                                    border-top: 1px solid $color-gray3;
+                                    padding-top: 1rem;
+                                    @include flex($justify:space-between);
+
+                                    span{
+                                        font-size: 1rem;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+
+                            .add-to-cart{
+                                i{
+                                    margin-left: 0.5rem;
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .expert-installation-background{

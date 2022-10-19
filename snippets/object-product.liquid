@@ -8,6 +8,7 @@
         ],
         "type": "{{ product.type }}",
         "vendor": "{{ product.vendor }}",
+        "featured_image": "{{ product | image_url: width: 1000 }}",
         "id": {{ product.id }},
         "price": "{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}",
         "compare_at_price": "{{ product.compare_at_price | money_without_trailing_zeros }}",

@@ -1,6 +1,25 @@
 <div id="expert-installation">
     <div class="expert-installation-container">
-        <h2>Herllo</h2>
+        <div class="head">
+            <h2>Expert Lens Replacement</h2>
+            <ul class="usp-container">
+                <li class="usp"><i class="fa-solid fa-thumbs-up"></i>$100 Warranty</li>
+                <li class="usp"><i class="fa-solid fa-calendar-check"></i>Free Shipping</li>
+            </ul>
+            <button class="close" onclick="display('#expert-installation', false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="body">
+            <component
+                :is="currentPanel" 
+                :product="product"
+                :user-states="userStates"
+                :selected-variant="selectedVariant"
+                @change-panel="currentPanel = $event"
+                @change-color="userStates.option1 = $event"
+                @change-lens-type="userStates.option2 = $event"
+                @change-wrap="userStates.option3 = $event"
+            />
+        </div>
     </div>
     <div onclick="display('#expert-installation', false)" class="expert-installation-background">
     </div>
@@ -8,9 +27,11 @@
 
 {{ 'popup-expert-installation.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'sunglasses-expert-installation.js' | asset_url }}"></script>
+<script src="{{ 'expert-install-lens-panel.js' | asset_url }}"></script>
+<script src="{{ 'expert-install-wrap-panel.js' | asset_url }}"></script>
 
 <script>
-    initialize();
+    initializeExpertInstallation();
 </script>
 
 {% comment %} 

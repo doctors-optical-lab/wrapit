@@ -70,18 +70,30 @@ const SunglassesProductComponent = {
 
         //WATCH
         // When userStates.selectedOptions change, automatically change userStates.selectedVariant
-        watch(userStates, (newStates) => {
-                let newActiveVariant = lensProduct.value.variants.find(variant => 
-                    variant.options[0] == newStates.selectedOptions[0] &&
-                    variant.options[1] == newStates.selectedOptions[1] &&
-                    variant.options[2] == newStates.selectedOptions[2])
+        watch(
+            () => userStates.selectedOptions,
+            (options) => {
+                let newSelectedVariant = lensProduct.value.variants.find(variant => {
+                    return variant.options.join() == options.join();
+                })
 
-                userStates.selectedVariant = newActiveVariant;
-                userStates.selectedImage = newActiveVariant.metafields['Human Image'];
-            }
+                // edge case: Polarized is selected but then user chooses a color that does not support polarized
+                if (!newSelectedVariant) {
+                    newSelectedVariant = lensProduct.value.variants.find(variant => {
+                        return variant.options[0] == options[0];
+                    })
+                    userStates.selectedOptions[1] = newSelectedVariant.options[1];
+                    userStates.selectedOptions[2] = newSelectedVariant.options[2];
+                }
+
+                userStates.selectedVariant = newSelectedVariant;
+                userStates.selectedImage = userStates.selectedVariant.metafields['Human Image'];
+
+            },
+            { deep: true }
         )
 
-        // //ADD TO CART
+        //METHODS
         function addToCart(){
             let data = {
                 'items': [
@@ -95,7 +107,6 @@ const SunglassesProductComponent = {
                     }
                 ]
             }
-            console.log(data)
             fetch(`${window.Shopify.routes.root}cart/add.js`, {
                 method: "POST",
                 headers: {
@@ -103,8 +114,7 @@ const SunglassesProductComponent = {
                 }, 
                 body: JSON.stringify(data)
             }).then(response => {
-                if(response.status == 200 && response.ok == true) window.location.href = '/cart'
-                console.log(response);
+                if(response.status == 200 && response.ok == true) window.location.href = '/cart';
             }).catch((error) => {
               console.error('Error:', error);
             });

@@ -13,10 +13,10 @@
                     :class="{'active': userStates.selectedImage == lensColors[userStates.selectedOptions[0]]['Lens Image']}" 
                     :src="lensColors[userStates.selectedOptions[0]]['Lens Image']">
                 <img 
-                    @click="userStates.selectedImage = lensColors[userStates.selectedOptions[0]]['Frame Image']" 
+                    @click="userStates.selectedImage = frame.featured_image" 
                     loading="lazy" 
-                    :class="{'active': userStates.selectedImage == lensColors[userStates.selectedOptions[0]]['Frame Image']}" 
-                    :src="lensColors[userStates.selectedOptions[0]]['Frame Image']">
+                    :class="{'active': userStates.selectedImage == frame.featured_image}" 
+                    :src="frame.featured_image">
             </div>
             <div class="active-image-container">
                 <img loading="lazy" class="active-image" :src="userStates.selectedImage">
